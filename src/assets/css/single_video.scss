@@ -25,24 +25,37 @@
   height: 100%;
 }
 
+.sv-video-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background-color: #030303;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 0.5vh;
+}
+
 .sv-thumbnail {
-  width: 20%;
+  position: relative;
+  height: 30vh;
+  width: 50vh;
 }
 
 .sv-detail {
 
-  margin-left: 20px;
+  margin-left: 2vh;
   width: 50%;
 }
 
 .sv-title {
+  text-decoration: none;
 
   color: #030303;
   -webkit-line-clamp: 2;
   display: block;
   max-height: calc(2 * 2.4rem);
   overflow: hidden;
-  font-size: 1.8rem;
+  font-size: 20px;
   font-weight: 400;
   line-height: 2.4rem;
   -webkit-box-orient: vertical;
@@ -57,7 +70,7 @@
   display: block;
   max-height: calc(2 * 1.8rem);
   overflow: hidden;
-  font-size: 1.3rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.8rem;
   letter-spacing: inherit;
@@ -70,13 +83,13 @@
 }
 
 .sv-owner {
-  padding-top: 20px;
+  padding-top: 5px;
   color: #606060;
   max-width: 100%;
   display: block;
   max-height: calc(2 * 1.8rem);
   overflow: hidden;
-  font-size: 1.2rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.8rem;
   letter-spacing: inherit;
@@ -117,14 +130,17 @@
   cursor: pointer;
 
 }
-
+.sv-quick-download-icon{
+  height: 40px;
+}
 .sv-download-video {
-
+  display: flex;
   transition: height 2s;
   border: 1px solid #dfe1e5;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   padding: 10px 20px 10px 20px;
   cursor: pointer;
+
 }
 
 .sv-dropdown-svg {
@@ -134,13 +150,13 @@
 }
 
 .sv-description {
-  padding-top: 20px;
+  padding-top: 10px;
   color: #606060;
   max-width: 100%;
   display: block;
   max-height: calc(2 * 1.8rem);
   overflow: hidden;
-  font-size: 1.2rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.8rem;
   letter-spacing: inherit;
@@ -153,7 +169,7 @@
   display: block;
   max-height: calc(2 * 1.8rem);
   overflow: hidden;
-  font-size: 1.3rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.8rem;
   letter-spacing: inherit;

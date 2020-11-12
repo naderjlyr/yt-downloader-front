@@ -1,6 +1,8 @@
 import React from "react"
 import VideoSVG from "../assets/icons/videoSVG";
 import DropSVG from "../assets/icons/dropSVG";
+import Mp3 from "../assets/icons/mp3SVG";
+import Mp4 from "../assets/icons/mp4SVG";
 
 class SingleVideo extends React.Component {
     constructor(props) {
@@ -49,10 +51,13 @@ class SingleVideo extends React.Component {
             <div className="sv-parent">
                 <div className="sv-thumbnail">
                     {/*<VideoSVG/>*/}
-                    <img src={image} className="sv-thumbnail-image"/>
+                    <img alt="YTS DOWNLOADER" src={image} className="sv-thumbnail-image"/>
+                    <div className="sv-video-duration">
+                        {video_duration}
+                    </div>
                 </div>
                 <div className="sv-detail">
-                    <div className="sv-title">{title}</div>
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="sv-title">{title}</a>
                     <div className="sv-metadata-line">
                         <div className="sv-views">{view_count_text}</div>
                         <div className="sv-published-date">{published_time_text}</div>
@@ -62,8 +67,9 @@ class SingleVideo extends React.Component {
                 </div>
                 <div className="sv-download-link">
                     <div className="sv-download-video" onClick={this.toggleDownloadVideoOpen}>
-                        Download Video
-                        <DropSVG className="sv-dropdown-svg"/>
+                        <Mp3 className="sv-quick-download-icon"/>
+                        <Mp4 className="sv-quick-download-icon"/>
+                        <Mp4 className="sv-quick-download-icon"/>
                     </div>
                     {
                         <div id="sv-download-video-options" className={this.state.downloadVideoOptions}>
