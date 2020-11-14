@@ -19,6 +19,15 @@ class AllVideos extends React.Component {
             all_videos: [],
         }
     }
+    componentDidMount()
+    {
+        document.addEventListener("keyup", this.handleEnter)
+    }
+    componentWillUnmount()
+    {
+        document.removeEventListener("keyup", this.handleEnter)
+    }
+    handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
     render() {
         let {searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
