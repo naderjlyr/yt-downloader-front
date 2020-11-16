@@ -3,6 +3,7 @@ import VideoSVG from "../assets/icons/videoSVG";
 import DropSVG from "../assets/icons/dropSVG";
 import Mp3 from "../assets/icons/mp3SVG";
 import Mp4 from "../assets/icons/mp4SVG";
+import API from "../utils/API";
 
 class SingleVideo extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class SingleVideo extends React.Component {
         }
         this.toggleDownloadVideoOpen = this.toggleDownloadVideoOpen.bind(this)
         this.toggleDownloadAudioOpen = this.toggleDownloadAudioOpen.bind(this)
+        this.url = this.props.single_video.url
     }
 
     render() {
@@ -67,9 +69,21 @@ class SingleVideo extends React.Component {
                 </div>
                 <div className="sv-download-link">
                     <div className="sv-download-video" onClick={this.toggleDownloadVideoOpen}>
-                        <Mp3 className="sv-quick-download-icon"/>
-                        <Mp4 className="sv-quick-download-icon"/>
-                        <Mp4 className="sv-quick-download-icon"/>
+                        <div className="sv-quick-download">
+                            <Mp3 className="sv-quick-download-icon"/>
+                            <span className="sv-quick-download-icon-text">
+                            MP3</span>
+                        </div>
+                        <div className="sv-quick-download">
+                            <Mp4 className="sv-quick-download-icon"/>
+                            <span className="sv-quick-download-icon-text">
+                            360p</span>
+                        </div>
+                        <div className="sv-quick-download">
+                            <Mp4 className="sv-quick-download-icon"/>
+                            <span className="sv-quick-download-icon-text">
+                            480p</span>
+                        </div>
                     </div>
                     {
                         <div id="sv-download-video-options" className={this.state.downloadVideoOptions}>
@@ -81,7 +95,7 @@ class SingleVideo extends React.Component {
                         </div>
                     }
                     <div className="sv-download-audio" onClick={this.toggleDownloadAudioOpen}>
-                        Download Audio
+                        Other Formats
                         <DropSVG className="sv-dropdown-svg"/>
                     </div>
                     {
@@ -113,9 +127,21 @@ class SingleVideo extends React.Component {
     toggleDownloadAudioOpen() {
 
         if (this.state.downloadAudioOptions === '') {
-            this.setState({
-                downloadAudioOptions: 'sv-download-audio-options'
+            let search_data = JSON.stringify({video_link: this.url})
+            API.post("download_links", search_data, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
             })
+                .then((res) => {
+                    console.log(res.data.data)
+
+                    this.setState({
+                        urls: res.data.data,
+                        downloadAudioOptions: 'sv-download-audio-options'
+                    })
+                })
+
         } else {
             this.setState({
                 downloadAudioOptions: '',

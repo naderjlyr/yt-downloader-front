@@ -121,8 +121,24 @@
   overflow: hidden;
 }
 
+.sv-quick-download {
+
+  &:hover {
+    border-radius: 8px;
+    fill: #f37236;
+    color: #f37236;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+  }
+  display: grid;
+  width: 33%;
+  border-spacing: 10px;
+  cursor: pointer;
+
+}
+
 .sv-download-audio {
   margin-top: 10px;
+  border-radius: 8px;
   transition: height 2s;
   border: 1px solid #dfe1e5;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
@@ -130,17 +146,28 @@
   cursor: pointer;
 
 }
-.sv-quick-download-icon{
+
+.sv-quick-download-icon {
   height: 40px;
+
 }
+
+.sv-quick-download-icon-text {
+  padding-left: 1.7vh;
+  //padding-bottom: 10px;
+  font-size: 12px;
+  text-align: start;
+}
+
 .sv-download-video {
+  text-align: -webkit-center;
+  border-radius: 8px;
+
   display: flex;
   transition: height 2s;
   border: 1px solid #dfe1e5;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
-  padding: 10px 20px 10px 20px;
-  cursor: pointer;
-
+  padding: 10px;
 }
 
 .sv-dropdown-svg {
