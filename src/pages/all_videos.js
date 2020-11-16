@@ -1,14 +1,12 @@
 import React from "react"
 import API from "../utils/API"
 
-import ScreenLogo from "../assets/image/screen_logo.png"
 import SearchSVG from "../assets/icons/searchSVG";
 import RightArrow from "../assets/icons/rightArrowSVG";
 import ListVideos from "../components/list_videos";
 import YoutubeSVG from "../assets/icons/youtubeSVG";
 import SoundCloudSVG from "../assets/icons/soundcloudSVG";
 import MovieSVG from "../assets/icons/movieSVG";
-
 
 class AllVideos extends React.Component {
     constructor(props) {
@@ -53,6 +51,8 @@ class AllVideos extends React.Component {
             case 'soundcloud':
                 soundCloudSVG = <SoundCloudSVG className="top-icon chosen" id="soundcloud"/>
                 break
+            default:
+                break
         }
         return (
             <div style={isSearchLoaded ? {display: "flex-inline"} : null}>
@@ -63,13 +63,13 @@ class AllVideos extends React.Component {
                     paddingBottom: 30
                 } : null}>
                     <div className={isSearchLoaded ? "screen-logo-loaded" : "screen-logo"}>
-                        <div class="icon-container">
+                        <div className="icon-container">
                             {movieSVG}
                         </div>
-                        <div class="icon-container">
+                        <div className="icon-container">
                             {youTubeSVG}
                         </div>
-                        <div class="icon-container">
+                        <div className="icon-container">
                             {soundCloudSVG}
                         </div>
                     </div>
@@ -145,11 +145,12 @@ class AllVideos extends React.Component {
 
     handleSuggestion = (e
     ) => {
-        if (e.target.value.includes('youtube')) {
-            this.setState({chosenPlatform: 'youtube.com', searchValue: e.target.value})
-        } else if (e.target.value.includes('youtu.be/')) {
+        var insertedString = e.target.value.toLowerCase();
+        if (insertedString.includes('youtube.com')) {
             this.setState({chosenPlatform: 'youtube', searchValue: e.target.value})
-        } else if (e.target.value.includes('soundcloud.com')) {
+        } else if (insertedString.includes('youtu.be/')) {
+            this.setState({chosenPlatform: 'youtube', searchValue: e.target.value})
+        } else if (insertedString.includes('soundcloud.com')) {
             this.setState({chosenPlatform: 'soundcloud', searchValue: e.target.value})
         } else {
             this.setState({chosenPlatform: e.target.value.length > 0? 'movie' : '', searchValue: e.target.value})
