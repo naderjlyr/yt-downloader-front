@@ -1,11 +1,12 @@
 import React from "react"
 import API from "../utils/API"
 
-import ScreenLogo from "../assets/image/screen_logo.png"
 import SearchSVG from "../assets/icons/searchSVG";
 import RightArrow from "../assets/icons/rightArrowSVG";
 import ListVideos from "../components/list_videos";
-
+import YoutubeSVG from "../assets/icons/youtubeSVG";
+import SoundCloudSVG from "../assets/icons/soundcloudSVG";
+import MovieSVG from "../assets/icons/movieSVG";
 
 class AllVideos extends React.Component {
     constructor(props) {
@@ -16,21 +17,43 @@ class AllVideos extends React.Component {
             isSearchLoaded: false,
             searchValue: '',
             isSearchLoading: false,
+            isYoutubeLoaded: false,
             all_videos: [],
+            chosenPlatform: 'all',
         }
     }
-    componentDidMount()
-    {
+
+    componentDidMount() {
         document.addEventListener("keyup", this.handleEnter)
     }
-    componentWillUnmount()
-    {
+
+    componentWillUnmount() {
         document.removeEventListener("keyup", this.handleEnter)
     }
+
     handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
     render() {
-        let {searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
+        let {chosenPlatform, searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
+        let movieSVG = <MovieSVG className="top-icon" id="movie"/>
+        let youTubeSVG = <YoutubeSVG className="top-icon" id="youtube"
+                                     hoverColor='#000'/>
+        let soundCloudSVG = <SoundCloudSVG className="top-icon" id="soundcloud"
+                                           hoverColor='#FF0000'/>
+        switch (chosenPlatform) {
+            case 'movie':
+                movieSVG = <MovieSVG className="top-icon chosen" id="movie"/>
+
+                break
+            case 'youtube':
+                youTubeSVG = <YoutubeSVG className="top-icon chosen" id="youtube"/>
+                break
+            case 'soundcloud':
+                soundCloudSVG = <SoundCloudSVG className="top-icon chosen" id="soundcloud"/>
+                break
+            default:
+                break
+        }
         return (
             <div style={isSearchLoaded ? {display: "flex-inline"} : null}>
 
@@ -40,7 +63,15 @@ class AllVideos extends React.Component {
                     paddingBottom: 30
                 } : null}>
                     <div className={isSearchLoaded ? "screen-logo-loaded" : "screen-logo"}>
-                        <img className="main-image" src={ScreenLogo} alt="YTS"/>
+                        <div className="icon-container">
+                            {movieSVG}
+                        </div>
+                        <div className="icon-container">
+                            {youTubeSVG}
+                        </div>
+                        <div className="icon-container">
+                            {soundCloudSVG}
+                        </div>
                     </div>
                     <div className={isSearchLoaded ? "search-query-parent-loaded" : "search-query-parent"} style={
                         isSuggestionLoaded ?
@@ -114,8 +145,17 @@ class AllVideos extends React.Component {
 
     handleSuggestion = (e
     ) => {
+        var insertedString = e.target.value.toLowerCase();
+        if (insertedString.includes('youtube.com')) {
+            this.setState({chosenPlatform: 'youtube', searchValue: e.target.value})
+        } else if (insertedString.includes('youtu.be/')) {
+            this.setState({chosenPlatform: 'youtube', searchValue: e.target.value})
+        } else if (insertedString.includes('soundcloud.com')) {
+            this.setState({chosenPlatform: 'soundcloud', searchValue: e.target.value})
+        } else {
+            this.setState({chosenPlatform: e.target.value.length > 0? 'movie' : '', searchValue: e.target.value})
+        }
         clearTimeout(this.timeout)
-        this.setState({searchValue: e.target.value})
         this.timeout = setTimeout(() => {
             let query_phrase = e.target.value
             API.get(`youtube_auto_suggest?query_phrase= ${query_phrase}`)
