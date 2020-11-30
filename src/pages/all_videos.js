@@ -131,7 +131,23 @@ class AllVideos extends React.Component {
                             </div>
                         </div>
                     </div>
-
+                    <div className="category-container">
+                        <div className="ct-youtube">
+                            <input type="checkbox" name="cat-youtube" value="cat-youtube" />Youtube
+                        </div>
+                        <div className="ct-movies">
+                            <input type="checkbox" name="cat-movies" value="cat-movies" />Movies & TV Series
+                        </div>
+                        <div className="ct-educational">
+                            <input type="checkbox" name="cat-educational" value="cat-educational" />Educational
+                        </div>
+                        <div className="ct-music">
+                            <input type="checkbox" name="cat-music" value="cat-music" />Music
+                        </div>
+                        <div className="ct-adult">
+                            <input type="checkbox" name="cat-adult" value="cat-adult" />Adult Content
+                        </div>
+                    </div>
                     {isSuggestionLoaded &&
                     <div className={isSearchLoaded ? "suggestion-parent-loaded" : "suggestion-parent"}>
                         {searchSuggestions.map(
@@ -153,11 +169,9 @@ class AllVideos extends React.Component {
                         )
                         }
                     </div>}
-
                 </div>
 
                 {isSearchLoaded && <div className="list-videos"><ListVideos all_videos={all_videos}/></div>}
-
             </div>
 
         );
