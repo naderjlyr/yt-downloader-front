@@ -7,6 +7,7 @@ import ListVideos from "../components/list_videos";
 import YoutubeSVG from "../assets/icons/youtubeSVG";
 import SoundCloudSVG from "../assets/icons/soundcloudSVG";
 import MovieSVG from "../assets/icons/movieSVG";
+import LogoSVG from "../assets/icons/logoSVG";
 
 class AllVideos extends React.Component {
     constructor(props) {
@@ -18,23 +19,28 @@ class AllVideos extends React.Component {
             searchValue: '',
             isSearchLoading: false,
             isYoutubeLoaded: false,
+            viewBoxLogoSVG: "0 0 150.51502 42.928498",
             all_videos: [],
             chosenPlatform: 'all',
+            windowWidth: window.innerWidth,
         }
     }
-
     componentDidMount() {
         document.addEventListener("keyup", this.handleEnter)
+        window.addEventListener("resize", this.handleSize);
+
     }
 
     componentWillUnmount() {
         document.removeEventListener("keyup", this.handleEnter)
+        window.addEventListener("resize", this.handleSize);
     }
 
     handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
     render() {
-        let {chosenPlatform, searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
+        let { windowWidth } = this.state;
+        let {chosenPlatform, viewBoxLogoSVG, searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
         let movieSVG = <MovieSVG className="top-icon" id="movie"/>
         let youTubeSVG = <YoutubeSVG className="top-icon" id="youtube"
                                      hoverColor='#000'/>
@@ -55,23 +61,37 @@ class AllVideos extends React.Component {
                 break
         }
         return (
-            <div style={isSearchLoaded ? {display: "flex-inline"} : null}>
+            <div className="main-container" style={isSearchLoaded ? {
+                display: "flex-inline",
+                alignItems: "center",
+                justifyContent: "center"
+            } : null}>
 
-                <div style={isSearchLoaded ? {
+                <div className="search-container" style={isSearchLoaded ? {
                     display: "flex",
                     borderBottom: "1px solid #dfe1e5",
-                    paddingBottom: 30
+                    paddingBottom: 30,
+                    paddingTop: 0
                 } : null}>
                     <div className={isSearchLoaded ? "screen-logo-loaded" : "screen-logo"}>
-                        <div className="icon-container">
-                            {movieSVG}
+                        {isSearchLoaded &&
+                        <div className="logo-container">
+                            <LogoSVG viewBox={windowWidth > 700 ? "0 -20 200 70" : "0 0 80.51502 42.928498"}/>
                         </div>
-                        <div className="icon-container">
-                            {youTubeSVG}
-                        </div>
-                        <div className="icon-container">
-                            {soundCloudSVG}
-                        </div>
+                        }
+                        {!isSearchLoaded &&
+                        <React.Fragment>
+                            <div className="logo-container">
+                                <LogoSVG viewBox={viewBoxLogoSVG}/>
+                            </div>
+                            <div className="icon-container">
+                                {movieSVG}
+                                {youTubeSVG}
+                                {soundCloudSVG}
+                            </div>
+                        </React.Fragment>
+                        }
+
                     </div>
                     <div className={isSearchLoaded ? "search-query-parent-loaded" : "search-query-parent"} style={
                         isSuggestionLoaded ?
@@ -111,7 +131,23 @@ class AllVideos extends React.Component {
                             </div>
                         </div>
                     </div>
-
+                    <div className="category-container">
+                        <div className="ct-youtube">
+                            <input type="checkbox" name="cat-youtube" value="cat-youtube" />Youtube
+                        </div>
+                        <div className="ct-movies">
+                            <input type="checkbox" name="cat-movies" value="cat-movies" />Movies & TV Series
+                        </div>
+                        <div className="ct-educational">
+                            <input type="checkbox" name="cat-educational" value="cat-educational" />Educational
+                        </div>
+                        <div className="ct-music">
+                            <input type="checkbox" name="cat-music" value="cat-music" />Music
+                        </div>
+                        <div className="ct-adult">
+                            <input type="checkbox" name="cat-adult" value="cat-adult" />Adult Content
+                        </div>
+                    </div>
                     {isSuggestionLoaded &&
                     <div className={isSearchLoaded ? "suggestion-parent-loaded" : "suggestion-parent"}>
                         {searchSuggestions.map(
@@ -133,16 +169,16 @@ class AllVideos extends React.Component {
                         )
                         }
                     </div>}
-
                 </div>
 
                 {isSearchLoaded && <div className="list-videos"><ListVideos all_videos={all_videos}/></div>}
-
             </div>
 
         );
     }
-
+    handleSize = (e)=>{
+        this.state = {windowWidth:window.innerWidth}
+    }
     handleSuggestion = (e
     ) => {
         var insertedString = e.target.value.toLowerCase();
@@ -153,7 +189,7 @@ class AllVideos extends React.Component {
         } else if (insertedString.includes('soundcloud.com')) {
             this.setState({chosenPlatform: 'soundcloud', searchValue: e.target.value})
         } else {
-            this.setState({chosenPlatform: e.target.value.length > 0? 'movie' : '', searchValue: e.target.value})
+            this.setState({chosenPlatform: e.target.value.length > 0 ? 'movie' : '', searchValue: e.target.value})
         }
         clearTimeout(this.timeout)
         this.timeout = setTimeout(() => {
