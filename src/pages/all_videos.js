@@ -15,7 +15,7 @@ class AllVideos extends React.Component {
         this.state = {
             searchSuggestions: [],
             isSuggestionLoaded: false,
-            isSearchLoaded: false,
+            isSearchLoaded: true,
             searchValue: '',
             isSearchLoading: false,
             isYoutubeLoaded: false,
@@ -67,7 +67,7 @@ class AllVideos extends React.Component {
                 justifyContent: "center"
             } : null}>
 
-                <div className="search-container" style={isSearchLoaded ? {
+                <div className={isSearchLoaded ? "search-container-loaded": "search-container"} style={isSearchLoaded ? {
                     display: "flex",
                     borderBottom: "1px solid #dfe1e5",
                     paddingBottom: 30,
@@ -99,53 +99,60 @@ class AllVideos extends React.Component {
                                 borderBottomRightRadius: 0,
                                 borderBottomLeftRadius: 0,
                             } : null}>
-                        <div className="iblpc">
-                            <style
-                                data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
-                            <div className="hsuHs">
-                <span className="wFncld z1asCe MZy1Rb">
-                <SearchSVG/>
-                </span>
-                            </div>
-                        </div>
-                        <input className="search-query" value={searchValue} onChange={this.handleSuggestion}
-                               onBlur={(_) =>
-                                   setTimeout(() => {
-                                       this.setState({
-                                           searchSuggestions: [],
-                                           isSuggestionLoaded: false,
-                                       })
-                                   }, 200)}/>
-
-                        <div className={searchValue.length > 0 ? "right-arrow" : "non-display"}
-                             onClick={this.handleSearch}>
+                        <div className="search-box-container">
                             <div className="iblpc">
                                 <style
                                     data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
-                                <div className="hsuHs-arrow">
+                                <div className="hsuHs">
+                <span className="wFncld z1asCe MZy1Rb">
+                <SearchSVG/>
+                </span>
+                                </div>
+                            </div>
+                            <input className="search-query" value={searchValue} onChange={this.handleSuggestion}
+                                   onBlur={(_) =>
+                                       setTimeout(() => {
+                                           this.setState({
+                                               searchSuggestions: [],
+                                               isSuggestionLoaded: false,
+                                           })
+                                       }, 200)}/>
+
+                            <div className={searchValue.length > 0 ? "right-arrow" : "non-display"}
+                                 onClick={this.handleSearch}>
+                                <div className="iblpc">
+                                    <style
+                                        data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
+                                    <div className="hsuHs-arrow">
                 <span className="wFncld z1asCe MZy1Rb">
                 {isSearchLoading ? <div className="loader"/> : <RightArrow/>}
                     <div className="lds-hourglass"/>
                 </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="category-container">
-                        <div className="ct-youtube">
-                            <input type="checkbox" name="cat-youtube" value="cat-youtube" />Youtube
-                        </div>
-                        <div className="ct-movies">
-                            <input type="checkbox" name="cat-movies" value="cat-movies" />Movies & TV Series
-                        </div>
-                        <div className="ct-educational">
-                            <input type="checkbox" name="cat-educational" value="cat-educational" />Educational
-                        </div>
-                        <div className="ct-music">
-                            <input type="checkbox" name="cat-music" value="cat-music" />Music
-                        </div>
-                        <div className="ct-adult">
-                            <input type="checkbox" name="cat-adult" value="cat-adult" />Adult Content
+                        <div className="category-container" id={isSearchLoaded ? "loaded" : " "}>
+                            <div className="ct-youtube">
+                                <input  id="cat-youtube" type="checkbox" name="cat-youtube" value="cat-youtube" />
+                                <label htmlFor="cat-youtube">Youtube</label>
+                            </div>
+                            <div className="ct-movies">
+                                <input id="cat-movies" type="checkbox" name="cat-movies" value="cat-movies" />
+                                <label htmlFor="cat-movies">Movies & TV Series</label>
+                            </div>
+                            <div className="ct-educational">
+                                <input id="cat-educational" type="checkbox" name="cat-educational" value="cat-educational" />
+                                <label htmlFor="cat-educational">Educational</label>
+                            </div>
+                            <div className="ct-music">
+                                <input  id="cat-music" type="checkbox" name="cat-music" value="cat-music" />
+                                <label htmlFor="cat-music">Music</label>
+                            </div>
+                            <div className="ct-adult">
+                                <input id="cat-adult" type="checkbox" name="cat-adult" value="cat-adult" />
+                                <label htmlFor="cat-adult">Adult Content</label>
+                            </div>
                         </div>
                     </div>
                     {isSuggestionLoaded &&
