@@ -84,11 +84,6 @@ class AllVideos extends React.Component {
                             <div className="logo-container">
                                 <LogoSVG viewBox={viewBoxLogoSVG}/>
                             </div>
-                            <div className="icon-container">
-                                {movieSVG}
-                                {youTubeSVG}
-                                {soundCloudSVG}
-                            </div>
                         </React.Fragment>
                         }
 
