@@ -25,6 +25,7 @@ class AllVideos extends React.Component {
             windowWidth: window.innerWidth,
         }
     }
+
     componentDidMount() {
         document.addEventListener("keyup", this.handleEnter)
         window.addEventListener("resize", this.handleSize);
@@ -39,7 +40,7 @@ class AllVideos extends React.Component {
     handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
     render() {
-        let { windowWidth } = this.state;
+        let {windowWidth} = this.state;
         let {chosenPlatform, viewBoxLogoSVG, searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
         let movieSVG = <MovieSVG className="top-icon" id="movie"/>
         let youTubeSVG = <YoutubeSVG className="top-icon" id="youtube"
@@ -67,12 +68,13 @@ class AllVideos extends React.Component {
                 justifyContent: "center"
             } : null}>
 
-                <div className={isSearchLoaded ? "search-container-loaded": "search-container"} style={isSearchLoaded ? {
-                    display: "flex",
-                    borderBottom: "1px solid #dfe1e5",
-                    paddingBottom: 30,
-                    paddingTop: 0
-                } : null}>
+                <div className={isSearchLoaded ? "search-container-loaded" : "search-container"}
+                     style={isSearchLoaded ? {
+                         display: "flex",
+                         borderBottom: "1px solid #dfe1e5",
+                         paddingBottom: 30,
+                         paddingTop: 0
+                     } : null}>
                     <div className={isSearchLoaded ? "screen-logo-loaded" : "screen-logo"}>
                         {isSearchLoaded &&
                         <div className="logo-container">
@@ -134,23 +136,24 @@ class AllVideos extends React.Component {
                         </div>
                         <div className="category-container" id={isSearchLoaded ? "loaded" : " "}>
                             <div className="ct-youtube">
-                                <input  id="cat-youtube" type="checkbox" name="cat-youtube" value="cat-youtube" />
+                                <input id="cat-youtube" type="checkbox" name="cat-youtube" value="cat-youtube"/>
                                 <label htmlFor="cat-youtube">Youtube</label>
                             </div>
                             <div className="ct-movies">
-                                <input id="cat-movies" type="checkbox" name="cat-movies" value="cat-movies" />
+                                <input id="cat-movies" type="checkbox" name="cat-movies" value="cat-movies"/>
                                 <label htmlFor="cat-movies">Movies & TV Series</label>
                             </div>
                             <div className="ct-educational">
-                                <input id="cat-educational" type="checkbox" name="cat-educational" value="cat-educational" />
+                                <input id="cat-educational" type="checkbox" name="cat-educational"
+                                       value="cat-educational"/>
                                 <label htmlFor="cat-educational">Educational</label>
                             </div>
                             <div className="ct-music">
-                                <input  id="cat-music" type="checkbox" name="cat-music" value="cat-music" />
+                                <input id="cat-music" type="checkbox" name="cat-music" value="cat-music"/>
                                 <label htmlFor="cat-music">Music</label>
                             </div>
                             <div className="ct-adult">
-                                <input id="cat-adult" type="checkbox" name="cat-adult" value="cat-adult" />
+                                <input id="cat-adult" type="checkbox" name="cat-adult" value="cat-adult"/>
                                 <label htmlFor="cat-adult">Adult Content</label>
                             </div>
                         </div>
@@ -183,8 +186,9 @@ class AllVideos extends React.Component {
 
         );
     }
-    handleSize = (e)=>{
-        this.state = {windowWidth:window.innerWidth}
+
+    handleSize = (e) => {
+        this.state = {windowWidth: window.innerWidth}
     }
     handleSuggestion = (e
     ) => {
@@ -216,19 +220,13 @@ class AllVideos extends React.Component {
             this.setState({isSearchLoading: true})
             let search_value = this.state.searchValue
             if (search_value && search_value.length > 0) {
-                let search_data = JSON.stringify({query_phrase: search_value})
-                API.post("youtube_query", search_data, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
+                API.get(`search?query=${search_value}&filtering_type=movie`)
                     .then((result) => {
                         this.setState({
                             all_videos: result.data.data,
                             isSearchLoading: false,
                             isSearchLoaded: true,
                         })
-                        console.log(result.data)
                     })
                     .catch()
 
