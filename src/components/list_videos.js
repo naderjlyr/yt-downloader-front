@@ -1,5 +1,5 @@
 import React from "react"
-import SingleVideo from "./single_video";
+import SingleVideo from "./single_youtube";
 
 
 class ListVideos extends React.Component {

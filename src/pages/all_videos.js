@@ -15,7 +15,7 @@ class AllVideos extends React.Component {
         this.state = {
             searchSuggestions: [],
             isSuggestionLoaded: false,
-            isSearchLoaded: true,
+            isSearchLoaded: false,
             searchValue: '',
             isSearchLoading: false,
             isYoutubeLoaded: false,
