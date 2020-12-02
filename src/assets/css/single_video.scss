@@ -2,17 +2,20 @@
   font-family: 'myFont';
   src: local('Handlee'), url('../fonts/Handlee-Regular.ttf') format('truetype');
 }
+
 $total-items: 5;
-*{
+* {
   padding: 0;
   margin: 0;
   font-family: myFont;
 }
+
 .sv-parent {
   display: inline-flex;
   width: 100%;
   margin-bottom: 20px;
 }
+
 .sv-metadata-line {
   color: var(--ytd-metadata-line-color, var(--yt-spec-text-secondary));
   max-width: 100%;
@@ -51,7 +54,8 @@ $total-items: 5;
 }
 
 .sv-detail {
-
+  display: flex;
+  flex-direction: column;
   margin-left: 2vh;
   width: 50%;
 }
@@ -91,8 +95,13 @@ $total-items: 5;
   }
 }
 
+.imdb-rate-star {
+  font-size: 18px;
+  color: #f5c518;
+}
+
 .sv-owner {
-  padding-top: 5px;
+  //padding-top: 5px;
   color: #606060;
   max-width: 100%;
   display: block;
@@ -138,6 +147,7 @@ $total-items: 5;
     color: #f37236;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   }
+
   display: grid;
   width: 33%;
   border-spacing: 10px;
@@ -215,15 +225,17 @@ $total-items: 5;
 .sv-download-link {
   padding-top: 10px;
 }
-.sv-modal-overlay{
-  background-color: rgba(0,0,0, 0.7);
+
+.sv-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   display: block;
   z-index: 2;
 }
-.sv-modal-close-button{
+
+.sv-modal-close-button {
   position: absolute;
   top: 0;
   right: 0;
@@ -231,55 +243,63 @@ $total-items: 5;
   font-weight: 700;
   cursor: pointer;
 }
-.sv-modal-container{
-  position:fixed;
+
+.sv-modal-container {
+  position: fixed;
   background-image: url("https://media.gettyimages.com/videos/hand-sketched-cartoon-lines-background-in-stop-motion-video-id1021521664?s=640x640");
-  top:50%;
-  width:50%;
-  left:50%;
-  background-color: rgba(255,255,255,1);
+  top: 50%;
+  width: 50%;
+  left: 50%;
+  background-color: rgba(255, 255, 255, 1);
   transform: translate(-50%, -50%);
   z-index: 5;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
-  border-radius:5px;
-  font-family: myFont,Serif;
+  border-radius: 5px;
+  font-family: myFont, Serif;
 }
-.sv-modal-head{
-  width:100%;
+
+.sv-modal-head {
+  width: 100%;
 }
-.sv-modal-head h3{
+
+.sv-modal-head h3 {
   border-left: 2px solid #c6c6c6;
   padding: 0 0 0 2%;
   margin: 2%;
 }
-.sv-modal-item{
-  width:100%;
+
+.sv-modal-item {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
-.sv-modal-item-body{
-  width:100%;
-  font-size:3vh;
+
+.sv-modal-item-body {
+  width: 100%;
+  font-size: 3vh;
   background: transparent;
 }
-.sv-modal-item-body .sv-modal-box{
-  width:100%;
+
+.sv-modal-item-body .sv-modal-box {
+  width: 100%;
   position: relative;
-  height:auto;
+  height: auto;
   display: flex;
-  font-size:2vh;
+  font-size: 2vh;
   //box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
-  border-radius:3px;
+  border-radius: 3px;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  .content{
+
+  .content {
     display: flex;
     box-sizing: border-box;
   }
-  .sv-modal-box-footer{
+
+  .sv-modal-box-footer {
     width: 100%;
     padding-top: 1vh;
     margin-top: 10px;
@@ -293,13 +313,15 @@ $total-items: 5;
   overflow: hidden;
   width: 100%;
 }
+
 .sv-modal-quality {
   width: 100%;
   color: white;
   overflow: hidden;
+
   &-label {
     box-shadow: 2px 2px 2px #ccc;
-    transition:all 200ms;
+    transition: all 200ms;
     display: flex;
     justify-content: space-between;
     padding: 1em;
@@ -309,8 +331,9 @@ $total-items: 5;
     cursor: pointer;
     /* Icon */
     &:hover {
-      background-color: rgba(0,0,0,0.1);
+      background-color: rgba(0, 0, 0, 0.1);
     }
+
     &::after {
       content: "\276F";
       width: 1em;
@@ -319,6 +342,7 @@ $total-items: 5;
       transition: all .35s;
     }
   }
+
   &-content {
     max-height: 0;
     padding: 0 1em;
@@ -326,6 +350,7 @@ $total-items: 5;
     background: white;
     transition: all .35s;
   }
+
   &-close {
     display: flex;
     justify-content: flex-end;
@@ -333,6 +358,7 @@ $total-items: 5;
     font-size: 0.75em;
     background: #fff;
     cursor: pointer;
+
     &:hover {
       background: #fff;
     }
@@ -341,29 +367,33 @@ $total-items: 5;
 
 // :checked
 .sv-modal-quality {
-  &-label{
+  &-label {
 
   }
-  &.active{
-  .sv-modal-quality-content {
-    max-height: 100vh;
-    width: 100%;
-    padding: 1em;
-    color:#000;
-  }
-  .sv-modal-quality-content div{
-    color:#000;
-    line-height: 3vh;
-    cursor: pointer;
-  }
-  .sv-modal-quality-content div.url-link:hover{
-    text-decoration: underline;
-  }
-  .sv-modal-quality-label::after{
-    transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-  }
+
+  &.active {
+    .sv-modal-quality-content {
+      max-height: 100vh;
+      width: 100%;
+      padding: 1em;
+      color: #000;
+    }
+
+    .sv-modal-quality-content div {
+      color: #000;
+      line-height: 3vh;
+      cursor: pointer;
+    }
+
+    .sv-modal-quality-content div.url-link:hover {
+      text-decoration: underline;
+    }
+
+    .sv-modal-quality-label::after {
+      transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+    }
   }
 }

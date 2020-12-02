@@ -5,7 +5,7 @@ import Mp3 from "../assets/icons/mp3SVG";
 import Mp4 from "../assets/icons/mp4SVG";
 import API from "../utils/API";
 
-class SingleVideo extends React.Component {
+class SingleYoutube extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,9 +14,21 @@ class SingleVideo extends React.Component {
             {
                 title: '480P',
                 all_movies: [
-                    {'title': 'The Shawshank Redemption Ganool Encode', 'main_language': 'English', 'link': 'https://kosshertv.com'},
-                    {'title': 'The Shawshank Redemption MKVCage', 'main_language': 'Farsi', 'link': 'https://kosshertv.mamadeshan.com'},
-                    {'title': 'The Shawshank Redemption PLAXA', 'main_language': 'Pashto', 'link': 'https://kosshertv.com'},
+                    {
+                        'title': 'The Shawshank Redemption Ganool Encode',
+                        'main_language': 'English',
+                        'link': 'https://kosshertv.com'
+                    },
+                    {
+                        'title': 'The Shawshank Redemption MKVCage',
+                        'main_language': 'Farsi',
+                        'link': 'https://kosshertv.mamadeshan.com'
+                    },
+                    {
+                        'title': 'The Shawshank Redemption PLAXA',
+                        'main_language': 'Pashto',
+                        'link': 'https://kosshertv.com'
+                    },
                     {'title': 'The Shawshank Redemption BOB', 'main_language': 'Ordu', 'link': 'https://kosshertv.com'},
                 ]
             }, {
@@ -25,7 +37,11 @@ class SingleVideo extends React.Component {
                     {'title': 'The Shawshank Redemption', 'main_language': 'English', 'link': 'https://kosshertv.com'},
                     {'title': 'The Raw', 'main_language': 'Farsi', 'link': 'https://kosshertv.mamadeshan.com'},
                     {'title': 'The Black Hawk Down', 'main_language': 'Pashto', 'link': 'https://kosshertv.com'},
-                    {'title': 'Everything Happen For a Reason', 'main_language': 'Ordu', 'link': 'https://kosshertv.com'},
+                    {
+                        'title': 'Everything Happen For a Reason',
+                        'main_language': 'Ordu',
+                        'link': 'https://kosshertv.com'
+                    },
                 ]
             },
         ];
@@ -106,7 +122,8 @@ class SingleVideo extends React.Component {
                                                 this.all_qualities.map((quality, index) => (
                                                         <div className={this.state.qualitiesClassName[index]}
                                                              onClick={(_) => this.toggleTab(index)}>
-                                                            <div className="sv-modal-quality-label"><span>{quality.title}</span></div>
+                                                            <div className="sv-modal-quality-label">
+                                                                <span>{quality.title}</span></div>
                                                             <div className="sv-modal-quality-content">
                                                                 {quality.all_movies.map(movie =>
                                                                     <div className="sv-modal-single-download-link">
@@ -195,7 +212,7 @@ class SingleVideo extends React.Component {
     }
 
     handleClickOutside(e) {
-        if (e.target.className === "sv-modal-overlay"){
+        if (e.target.className === "sv-modal-overlay") {
             this.toggleDownloadLinks();
         }
     }
@@ -249,4 +266,4 @@ class SingleVideo extends React.Component {
     }
 }
 
-export default SingleVideo
+export default SingleYoutube
