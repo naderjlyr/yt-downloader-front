@@ -12,16 +12,16 @@ class ListVideos extends React.Component {
         const {all_videos} = this.props
         return (
             <div>
-                {all_videos.map(single_video => {
-                    switch (single_video['type']) {
+                {all_videos.map(items => {
+                    switch (items['type']) {
                         case 'movie':
-                            return <SingleMovie single_video={single_video}/>
+                            return items['data'].map(item => <SingleMovie key={Math.random()} single_video={item}/>)
                         case 'adult':
-                            return <SingleAdult single_video={single_video}/>
+                            return <SingleAdult single_video={items}/>
                         case 'educational':
-                            return <SingleEducation single_video={single_video}/>
+                            return <SingleEducation single_video={items}/>
                         case 'youtube':
-                            return <SingleYoutube single_video={single_video}/>
+                            return <SingleYoutube single_video={items}/>
                     }
                 })}
             </div>
