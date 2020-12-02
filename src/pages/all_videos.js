@@ -88,13 +88,14 @@ class AllVideos extends React.Component {
                         }
 
                     </div>
-                    <div className={isSearchLoaded ? "search-query-parent-loaded" : "search-query-parent"} style={
-                        isSuggestionLoaded ?
-                            {
-                                borderBottomRightRadius: 0,
-                                borderBottomLeftRadius: 0,
-                            } : null}>
-                        <div className="search-box-container">
+                    <div className={isSearchLoaded ? "search-query-parent-loaded" : "search-query-parent"}>
+                        <div className="search-box-container"  style={
+                            isSuggestionLoaded ?
+                                {
+                                    borderBottomRightRadius: 0,
+                                    borderBottomLeftRadius: 0,
+                                    borderBottom:0,
+                                } : null}>
                             <div className="iblpc">
                                 <style
                                     data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
