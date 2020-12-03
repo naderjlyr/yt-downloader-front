@@ -108,7 +108,7 @@ const LogoSVG = (props) => {
             <g
                 aria-label="TELEVISIUN"
                 transform="matrix(1.0507899,0,0,0.95166501,-140.017,-118.63544)"
-                className="logo-text"
+                className={props.className}
             >
                 <path
                     id="path2138"

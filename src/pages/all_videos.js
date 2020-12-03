@@ -23,7 +23,12 @@ class AllVideos extends React.Component {
             all_videos: [],
             chosenPlatform: 'all',
             windowWidth: window.innerWidth,
+            isBoxChecked: {
+                "youtube-select": "unchecked", "movie-select": "unchecked",
+                "educational-select": "unchecked", "music-select": "unchecked", "adult-select": "unchecked",
+            },
         }
+        this.toggleCheckbox = this.toggleCheckbox.bind(this);
     }
 
     componentDidMount() {
@@ -37,30 +42,9 @@ class AllVideos extends React.Component {
         window.addEventListener("resize", this.handleSize);
     }
 
-    handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
     render() {
-        let {windowWidth} = this.state;
-        let {chosenPlatform, viewBoxLogoSVG, searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
-        let movieSVG = <MovieSVG className="top-icon" id="movie"/>
-        let youTubeSVG = <YoutubeSVG className="top-icon" id="youtube"
-                                     hoverColor='#000'/>
-        let soundCloudSVG = <SoundCloudSVG className="top-icon" id="soundcloud"
-                                           hoverColor='#FF0000'/>
-        switch (chosenPlatform) {
-            case 'movie':
-                movieSVG = <MovieSVG className="top-icon chosen" id="movie"/>
-
-                break
-            case 'youtube':
-                youTubeSVG = <YoutubeSVG className="top-icon chosen" id="youtube"/>
-                break
-            case 'soundcloud':
-                soundCloudSVG = <SoundCloudSVG className="top-icon chosen" id="soundcloud"/>
-                break
-            default:
-                break
-        }
+        let {windowWidth, isBoxChecked, viewBoxLogoSVG, searchSuggestions, isSearchLoaded, isSearchLoading, isSuggestionLoaded, searchValue, all_videos} = this.state
         return (
             <div className="main-container" style={isSearchLoaded ? {
                 display: "flex-inline",
@@ -68,37 +52,32 @@ class AllVideos extends React.Component {
                 justifyContent: "center"
             } : null}>
 
-                <div className={isSearchLoaded ? "search-container-loaded" : "search-container"}
-                     style={isSearchLoaded ? {
-                         display: "flex",
-                         borderBottom: "1px solid #dfe1e5",
-                         paddingBottom: 30,
-                         paddingTop: 0
-                     } : null}>
+                <div className={isSearchLoaded ? "search-container-loaded" : "search-container"}>
                     <div className={isSearchLoaded ? "screen-logo-loaded" : "screen-logo"}>
                         {isSearchLoaded &&
                         <div className="logo-container">
-                            <LogoSVG viewBox={windowWidth > 700 ? "0 -20 200 70" : "0 0 80.51502 42.928498"}/>
+                            <LogoSVG viewBox={windowWidth > 700 ? "-20 -20 100 70" : "0 0 50.51502 42.928498"}
+                                     className="logo-text hide"/>
                         </div>
                         }
                         {!isSearchLoaded &&
                         <React.Fragment>
                             <div className="logo-container">
-                                <LogoSVG viewBox={viewBoxLogoSVG}/>
+                                <LogoSVG viewBox={viewBoxLogoSVG} className="logo-text"/>
                             </div>
                         </React.Fragment>
                         }
 
                     </div>
                     <div className={isSearchLoaded ? "search-query-parent-loaded" : "search-query-parent"}>
-                        <div className="search-box-container"  style={
+                        <div className="search-box-container" style={
                             isSuggestionLoaded ?
                                 {
-                                    borderBottomRightRadius: 0,
-                                    borderBottomLeftRadius: 0,
-                                    borderBottom:0,
+                                    borderBottomRightRadius: 24,
+                                    borderBottomLeftRadius: 24,
+                                    borderBottom: 0,
                                 } : null}>
-                            <div className="iblpc">
+                            <div className="magnify">
                                 <style
                                     data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
                                 <div className="hsuHs">
@@ -118,7 +97,7 @@ class AllVideos extends React.Component {
 
                             <div className={searchValue.length > 0 ? "right-arrow" : "non-display"}
                                  onClick={this.handleSearch}>
-                                <div className="iblpc">
+                                <div className="arrow">
                                     <style
                                         data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
                                     <div className="hsuHs-arrow">
@@ -129,52 +108,68 @@ class AllVideos extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="category-container" id={isSearchLoaded ? "loaded" : " "}>
-                            <div className="ct-youtube">
-                                <input id="cat-youtube" type="checkbox" name="cat-youtube" value="cat-youtube"/>
-                                <label htmlFor="cat-youtube">Youtube</label>
-                            </div>
-                            <div className="ct-movies">
-                                <input id="cat-movies" type="checkbox" name="cat-movies" value="cat-movies"/>
-                                <label htmlFor="cat-movies">Movies & TV Series</label>
-                            </div>
-                            <div className="ct-educational">
-                                <input id="cat-educational" type="checkbox" name="cat-educational"
-                                       value="cat-educational"/>
-                                <label htmlFor="cat-educational">Educational</label>
-                            </div>
-                            <div className="ct-music">
-                                <input id="cat-music" type="checkbox" name="cat-music" value="cat-music"/>
-                                <label htmlFor="cat-music">Music</label>
-                            </div>
-                            <div className="ct-adult">
-                                <input id="cat-adult" type="checkbox" name="cat-adult" value="cat-adult"/>
-                                <label htmlFor="cat-adult">Adult Content</label>
-                            </div>
-                        </div>
-                    </div>
-                    {isSuggestionLoaded &&
-                    <div className={isSearchLoaded ? "suggestion-parent-loaded" : "suggestion-parent"}>
-                        {searchSuggestions.map(
-                            suggestion =>
-                                <div key={suggestion} className="suggestion-option"
-                                     onClick={(_) => this.setState({searchValue: suggestion})}>
-                                    <div className="iblpc">
-                                        <style
-                                            data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
-                                        <div className="hsuHs">
+                            {isSuggestionLoaded &&
+                            <div className={isSearchLoaded ? "suggestion-parent-loaded" : "suggestion-parent"}>
+                                {searchSuggestions.map(
+                                    suggestion =>
+                                        <div key={suggestion} className="suggestion-option"
+                                             onClick={(_) => this.setState({searchValue: suggestion})}>
+                                            <div className="suggestion-magnify">
+                                                <style
+                                                    data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
+                                                <div className="hsuHs">
                             <span className="wFncld z1asCe MZy1Rb">
                                 <SearchSVG/>
                             </span>
 
+                                                </div>
+                                            </div>
+                                            <div className="suggestion-text">{suggestion}</div>
                                         </div>
-                                    </div>
-                                    <div className="suggestion-text">{suggestion}</div>
-                                </div>
-                        )
-                        }
-                    </div>}
+                                )
+                                }
+                            </div>}
+                        </div>
+                        <div className="category-container" id={isSearchLoaded ? "loaded" : " "}>
+                            <div className={"ct-youtube-" + isBoxChecked['youtube-select']} onClick={this.toggleCheckbox}
+                                 id="youtube-select">
+                                <div className={"icon-checkbox-" + isBoxChecked['youtube-select']} id="youtube-select"
+                                     onClick={this.toggleCheckbox}/>
+                                <div className="icon-youtube"/>
+                                <div className="label">Youtube</div>
+                            </div>
+                            <div className={"ct-movie-" + isBoxChecked['movie-select']} onClick={this.toggleCheckbox}
+                                 id="movie-select">
+                                <div className={"icon-checkbox-" + isBoxChecked['movie-select']} id="movie-select"
+                                     onClick={this.toggleCheckbox}/>
+                                <div className="icon-movie"/>
+                                <div className="label">Movies & TV Series</div>
+                            </div>
+                            <div className={"ct-educational-" + isBoxChecked['educational-select']}
+                                 onClick={this.toggleCheckbox} id="educational-select">
+                                <div className={"icon-checkbox-" + isBoxChecked['educational-select']}
+                                     id="educational-select"
+                                     onClick={this.toggleCheckbox}/>
+                                <div className="icon-education"/>
+                                <div className="label">Educational</div>
+                            </div>
+                            <div className={"ct-music-" + isBoxChecked['music-select']} onClick={this.toggleCheckbox}
+                                 id="music-select">
+                                <div className={"icon-checkbox-" + isBoxChecked['music-select']} id="music-select"
+                                     onClick={this.toggleCheckbox}/>
+                                <div className="icon-music"/>
+                                <div className="label">Music</div>
+                            </div>
+                            <div className={"ct-adult-" + isBoxChecked['adult-select']} onClick={this.toggleCheckbox}
+                                 id="adult-select">
+                                <div className={"icon-checkbox-" + isBoxChecked['adult-select']} id="adult-select"
+                                     onClick={this.toggleCheckbox}/>
+                                <div className="icon-adult"/>
+                                <div className="label">Adult Content</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
                 {isSearchLoaded && <div className="list-videos"><ListVideos all_videos={all_videos}/></div>}
@@ -182,6 +177,15 @@ class AllVideos extends React.Component {
 
         );
     }
+
+    toggleCheckbox(e) {
+        let checkbox_classes = this.state.isBoxChecked
+        checkbox_classes[e.target.id] = checkbox_classes[e.target.id] === "unchecked" ? 'checked' : 'unchecked'
+
+        this.setState({isBoxChecked: checkbox_classes});
+    }
+
+    handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
     handleSize = (e) => {
         this.state = {windowWidth: window.innerWidth}
