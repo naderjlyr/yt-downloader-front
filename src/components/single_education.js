@@ -39,32 +39,18 @@ class SingleEducation extends React.Component {
         const {single_video} = this.props
         const {
             name,
+            farsi_name,
             description,
-            movie_id,
-            genres,
+            categories,
             image,
             download_links,
-            movie_type,
-            country,
-            year,
-            main_language,
-            subtitles,
-            duration,
-            imdb_rate,
+            url,
 
         } = single_video
         // let {allVideoLinks, allAudioLinks} = this.props
-        const downloads = {}
-        const quick_accesses = []
+        const downloads = []
         download_links.map(download_link => {
-            if (!(download_link['quality'] in downloads)) {
-                downloads[download_link['quality']] = [download_link]
-                if (['1080p', '720p', '480p'].includes(download_link['quality'])) {
-                    quick_accesses.push({quality: download_link['quality'], link: download_link['link'][0]})
-                }
-            } else {
-                downloads[download_link['quality']].push(download_link)
-            }
+            downloads.push({link: download_link['link'][0], title: download_link['title']})
         })
         return (
             <div className="sv-parent" key={Math.random()}>
@@ -81,22 +67,33 @@ class SingleEducation extends React.Component {
                                     <div className="sv-modal-content">
                                         <div className="sv-modal-qualities">
                                             {
-                                                Object.keys(downloads).map((quality, index) => (
+                                                downloads.map(quality => (
+                                                        // <div key={Math.random()}
+                                                        //      className={this.state.qualitiesClassName[index]}
+                                                        //      onClick={(_) => this.toggleTab(index)}>
+                                                        //     <div className="sv-modal-quality-label">
+                                                        //         <span>{quality}</span>
+                                                        //     </div>
+                                                        //     <div className="sv-modal-quality-content">
+                                                        //         {downloads[quality].map(movie =>
+                                                        //             <div key={Math.random()}
+                                                        //                  className="sv-modal-single-download-link">
+                                                        //                 <div className="url-link"
+                                                        //                      onClick={() => window.open(movie.link, '_blank')}>
+                                                        //                     {movie.title}
+                                                        //                 </div>
+                                                        //             </div>
+                                                        //         )}
+                                                        //     </div>
+                                                        // </div>
                                                         <div key={Math.random()}
-                                                             className={this.state.qualitiesClassName[index]}
-                                                             onClick={(_) => this.toggleTab(index)}>
-                                                            <div className="sv-modal-quality-label">
-                                                                <span>{quality}</span></div>
-                                                            <div className="sv-modal-quality-content">
-                                                                {downloads[quality].map(movie =>
-                                                                    <div key={Math.random()}
-                                                                         className="sv-modal-single-download-link">
-                                                                        <div className="url-link"
-                                                                             onClick={() => window.open(movie.link, '_blank')}>
-                                                                            {movie.title}
-                                                                        </div>
-                                                                    </div>
-                                                                )}
+                                                             className="sv-modal-single-download-link">
+                                                            {
+                                                                console.log(quality)
+                                                            }
+                                                            <div className="url-link"
+                                                                 onClick={() => window.open(quality['link'], '_blank')}>
+                                                                {quality['title']}
                                                             </div>
                                                         </div>
                                                     )
@@ -118,56 +115,25 @@ class SingleEducation extends React.Component {
                     {/*<VideoSVG/>*/}
                     <img alt="YTS DOWNLOADER" src={image} className="sv-thumbnail-image"/>
                     <div className="sv-video-duration">
-                        {duration}
+                        {"duration"}
                     </div>
                 </div>
                 <div className="sv-detail">
-                    <a href={`https://www.imdb.com/title/tt${movie_id}`} target="_blank" rel="noopener noreferrer"
+                    <a href={url} target="_blank" rel="noopener noreferrer"
                        className="sv-title">{name}</a>
                     <div className="sv-metadata-line">
-                        <div className="sv-views">{`${main_language} (${country})`}</div>
-                        <div className="sv-published-date">{year}</div>
-                    </div>
-                    <div className="sv-metadata-line">
-                        <span className="imdb-rate-star">&#9733;</span>
-                        <div className="sv-views">{imdb_rate}</div>
-                        <div className="sv-owner">{genres.join(', ')}</div>
+                        {/*<div className="sv-views">{`${main_language} (${country})`}</div>*/}
+                        <div className="sv-published-date">{"year"}</div>
                     </div>
                     <div className="sv-description">{description}</div>
                 </div>
                 <div className="sv-download-link">
-                    <div className="sv-download-video" onClick={this.toggleDownloadVideoOpen}>
-                        {quick_accesses.map(quick_access =>
-                            <div className="sv-quick-download" onClick={(_) => window.open(quick_access['link'])}>
-                                <Mp4 className="sv-quick-download-icon"/>
-                                <span className="sv-quick-download-icon-text">
-                            {quick_access['quality']}</span>
-                            </div>)}
-                    </div>
-                    {
-                        <div id="sv-download-video-options" className={this.state.downloadVideoOptions}>
-                            {Object.keys(downloads).map(videoLink =>
-                                <div>{videoLink}
-                                    {downloads[videoLink].map(video_link =>
-                                        <div key={Math.random()} className="sv-download-video-option">
-                                            <a href={video_link['link'][0]}>{video_link['title']}</a>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    }
                     <div className="sv-download-audio" onClick={this.toggleDownloadLinks}>
-                        Other Formats
+                        Download Links
                         <DropSVG className="sv-dropdown-svg"/>
                     </div>
                     {
                         <div id="sv-download-audio-options" className={this.state.downloadAudioOptions}>
-                            {/*{downloads.map(audioLink =>*/}
-                            {/*    <div key={Math.random()} className="sv-download-audio-option">*/}
-                            {/*        <a href={audioLink['url']}>{audioLink['extension']}</a>*/}
-                            {/*    </div>*/}
-                            {/*)}*/}
                         </div>
                     }
                 </div>
