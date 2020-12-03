@@ -49,8 +49,14 @@ $total-items: 5;
 
 .sv-thumbnail {
   position: relative;
-  height: 30vh;
-  width: 50vh;
+  height: auto;
+  width: 9vw;
+}
+
+.sv-thumbnail-movie {
+  position: relative;
+  height: auto;
+  width: 9vw;
 }
 
 .sv-detail {
@@ -148,11 +154,11 @@ $total-items: 5;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   }
 
-  display: grid;
-  width: 33%;
+  display: flex;
+  flex-direction: column;
   border-spacing: 10px;
   cursor: pointer;
-
+  margin: auto
 }
 
 .sv-download-audio {
@@ -180,7 +186,6 @@ $total-items: 5;
 .sv-download-video {
   text-align: -webkit-center;
   border-radius: 8px;
-
   display: flex;
   transition: height 2s;
   border: 1px solid #dfe1e5;
@@ -223,7 +228,9 @@ $total-items: 5;
 }
 
 .sv-download-link {
-  padding-top: 10px;
+  max-width: 200px;
+  position: absolute;
+  right: 3%;
 }
 
 .sv-modal-overlay {
@@ -231,8 +238,24 @@ $total-items: 5;
   position: fixed;
   width: 100%;
   height: 100%;
+  //display: block;
+  display: none;
+  z-index: 3;
+  overflow: auto;
+  top: 0;
+  //top: -1000px;
+  transition: all .3s ease;
+  overflow-x: hidden;
+  @media (max-width: 480px) {
+    right: 20px;
+  }
+
+
+}
+
+.sv-modal-overlay.open {
   display: block;
-  z-index: 2;
+  //transform: translateY(1000px);
 }
 
 .sv-modal-close-button {
@@ -245,8 +268,7 @@ $total-items: 5;
 }
 
 .sv-modal-container {
-  position: fixed;
-  background-image: url("https://media.gettyimages.com/videos/hand-sketched-cartoon-lines-background-in-stop-motion-video-id1021521664?s=640x640");
+  position: relative;
   top: 50%;
   width: 50%;
   left: 50%;

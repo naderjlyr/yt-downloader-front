@@ -15,11 +15,12 @@ class ListVideos extends React.Component {
                 {all_videos.map(items => {
                     switch (items['type']) {
                         case 'movie':
+                            // return <SingleMovie key={Math.random()} single_video={items['data'][5]}/>
                             return items['data'].map(item => <SingleMovie key={Math.random()} single_video={item}/>)
                         case 'adult':
-                            return <SingleAdult single_video={items}/>
+                            return items['data'].map(item => <SingleAdult single_video={item} key={Math.random()}/>)
                         case 'educational':
-                            return <SingleEducation single_video={items}/>
+                            return items['data'].map(item => <SingleEducation single_video={item} key={Math.random()}/>)
                         case 'youtube':
                             return <SingleYoutube single_video={items}/>
                     }
