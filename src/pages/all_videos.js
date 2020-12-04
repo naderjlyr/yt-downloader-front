@@ -73,8 +73,8 @@ class AllVideos extends React.Component {
                         <div className="search-box-container" style={
                             isSuggestionLoaded ?
                                 {
-                                    borderBottomRightRadius: 24,
-                                    borderBottomLeftRadius: 24,
+                                    borderBottomRightRadius: 0,
+                                    borderBottomLeftRadius: 0,
                                     borderBottom: 0,
                                 } : null}>
                             <div className="magnify">
