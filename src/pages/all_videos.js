@@ -19,6 +19,7 @@ class AllVideos extends React.Component {
             isLoaded: false,
             viewBoxLogoSVG: "0 0 150.51502 42.928498",
             all_videos: [],
+            chosenPlatform: 'all',
             windowWidth: window.innerWidth,
             isBoxChecked: {
                 "youtube-select": "unchecked", "movie-select": "unchecked",
@@ -210,6 +211,7 @@ class AllVideos extends React.Component {
         this.setState({windowWidth: window.innerWidth})
     }
     handleSuggestion = (e) => {
+        this.setState({searchValue: e.target.value})
         clearTimeout(this.timeout)
         this.timeout = setTimeout(() => {
             let query_phrase = e.target.value
