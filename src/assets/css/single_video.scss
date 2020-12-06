@@ -3,7 +3,6 @@
   src: local('Handlee'), url('../fonts/Handlee-Regular.ttf') format('truetype');
 }
 
-$total-items: 5;
 * {
   padding: 0;
   margin: 0;
@@ -11,7 +10,8 @@ $total-items: 5;
 }
 
 .sv-parent {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -49,21 +49,14 @@ $total-items: 5;
 
 .sv-thumbnail {
   position: relative;
-  height: auto;
-  width: 9vw;
+  width:15%;
+  height:150px;
 }
-
-.sv-thumbnail-movie {
-  position: relative;
-  height: auto;
-  width: 9vw;
-}
-
 .sv-detail {
   display: flex;
   flex-direction: column;
   margin-left: 2vh;
-  width: 50%;
+  width: 70%;
 }
 
 .sv-title {
@@ -228,9 +221,7 @@ $total-items: 5;
 }
 
 .sv-download-link {
-  max-width: 200px;
-  position: absolute;
-  right: 3%;
+  width:15%;
 }
 
 .sv-modal-overlay {
@@ -419,3 +410,41 @@ $total-items: 5;
     }
   }
 }
+
+/* Responsive Design */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .sv-parent{
+    flex-direction: column;
+    padding-top:20px;
+    .sv-thumbnail{
+      width:100%;
+      align-self: center;
+    }
+    .sv-download-link{
+      width:100%;
+    }
+    .sv-detail{
+      width:100%;
+      .sv-title{
+        font-weight:700;
+      }
+      .sv-description{
+        padding:10px 10px 10px 0px;
+        max-height: fit-content;
+      }
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
