@@ -1,10 +1,13 @@
 import React from "react"
 import API from "../utils/API"
+import {createBrowserHistory} from "history"
 
 import SearchSVG from "../assets/icons/searchSVG";
 import RightArrow from "../assets/icons/rightArrowSVG";
 import ListVideos from "../components/list_videos";
 import LogoSVG from "../assets/icons/logoSVG";
+
+const history = createBrowserHistory()
 
 class Results extends React.Component {
     constructor(props) {
@@ -12,11 +15,8 @@ class Results extends React.Component {
         this.state = {
             searchSuggestions: [],
             isSuggestionLoaded: false,
-            isSearchLoaded: false,
             searchValue: '',
-            isSearchLoading: false,
             isYoutubeLoaded: false,
-            isLoaded: false,
             viewBoxLogoSVG: "0 0 150.51502 42.928498",
             all_videos: [],
             chosenPlatform: 'all',
@@ -26,15 +26,26 @@ class Results extends React.Component {
                 "educational-select": "unchecked", "music-select": "unchecked", "adult-select": "unchecked",
             },
         }
+        console.log(props.query)
         this.toggleCheckbox = this.toggleCheckbox.bind(this);
     }
 
     componentDidMount() {
+
         document.addEventListener("keyup", this.handleEnter)
         window.addEventListener("resize", this.handleSize);
-        this.setState({
-            isLoaded: true
-        })
+        let search_value = this.props.query.query
+        let filtering_type = this.props.query.filtering_type
+        if (search_value && search_value.length > 0) {
+            API.get(`search?query=${search_value}&filtering_type=${filtering_type}`)
+                .then((result) => {
+                    this.setState({
+                        all_videos: result.data.data,
+                        searchValue: search_value,
+                    })
+                })
+                .catch()
+        }
     }
 
     componentWillUnmount() {
@@ -48,8 +59,6 @@ class Results extends React.Component {
             windowWidth,
             isBoxChecked,
             searchSuggestions,
-            isSearchLoaded,
-            isSearchLoading,
             isSuggestionLoaded,
             searchValue,
             all_videos
@@ -96,7 +105,7 @@ class Results extends React.Component {
                                         data-iml="1604581045076">.hsuHs{"margin:auto"}.wFncld{"margin - top:3px;color:#9aa0a6;height:20px;width:20px"}</style>
                                     <div className="hsuHs-arrow">
                 <span className="wFncld z1asCe MZy1Rb">
-                {isSearchLoading ? <div className="loader"/> : <RightArrow/>}
+                <RightArrow/>
                     <div className="lds-hourglass"/>
                 </span>
                                     </div>
@@ -179,7 +188,6 @@ class Results extends React.Component {
     toggleCheckbox(e) {
         let checkbox_classes = this.state.isBoxChecked
 
-        console.log("toggle ", this.state)
         checkbox_classes[e.target.id] = checkbox_classes[e.target.id] === "unchecked" ? 'checked' : 'unchecked'
 
         this.setState({isBoxChecked: checkbox_classes});
@@ -207,21 +215,8 @@ class Results extends React.Component {
 
     }
     handleSearch = (_) => {
-        if (this.state.isSearchLoading === false) {
-            this.setState({isSearchLoading: true})
-            let search_value = this.state.searchValue
-            if (search_value && search_value.length > 0) {
-                API.get(`search?query=${search_value}&filtering_type=movie`)
-                    .then((result) => {
-                        this.setState({
-                            all_videos: result.data.data,
-                            isSearchLoading: false,
-                            isSearchLoaded: true,
-                        })
-                    })
-                    .catch()
-            }
-        }
+        history.push(`search?query=${this.state.searchValue}&filtering_type=movie`)
+        window.location.reload()
     }
 }
 
