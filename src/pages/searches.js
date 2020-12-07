@@ -1,10 +1,11 @@
 import React from "react"
 import API from "../utils/API"
-
+import {createBrowserHistory} from "history"
 import SearchSVG from "../assets/icons/searchSVG";
 import RightArrow from "../assets/icons/rightArrowSVG";
-import ListVideos from "../components/list_videos";
 import LogoSVG from "../assets/icons/logoSVG";
+
+const history = createBrowserHistory()
 
 class Searches extends React.Component {
     constructor(props) {
@@ -19,7 +20,6 @@ class Searches extends React.Component {
             viewBoxLogoSVG: "0 0 150.51502 42.928498",
             all_videos: [],
             chosenPlatform: 'all',
-            windowWidth: window.innerWidth,
             isBoxChecked: {
                 "youtube-select": "unchecked", "movie-select": "unchecked",
                 "educational-select": "unchecked", "music-select": "unchecked", "adult-select": "unchecked",
@@ -30,18 +30,15 @@ class Searches extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keyup", this.handleEnter)
-        window.addEventListener("resize", this.handleSize);
     }
 
     componentWillUnmount() {
         document.removeEventListener("keyup", this.handleEnter)
-        window.addEventListener("resize", this.handleSize);
     }
 
 
     render() {
         let {
-            windowWidth,
             isBoxChecked,
             viewBoxLogoSVG,
             searchSuggestions,
@@ -49,7 +46,6 @@ class Searches extends React.Component {
             isSearchLoading,
             isSuggestionLoaded,
             searchValue,
-            all_videos
         } = this.state
         return (
             <div className="main-container" style={isSearchLoaded ? {
@@ -58,24 +54,15 @@ class Searches extends React.Component {
                 justifyContent: "center"
             } : null}>
 
-                <div className={isSearchLoaded ? "search-container-loaded" : "search-container"}>
-                    <div className={isSearchLoaded ? "screen-logo-loaded" : "screen-logo"}>
-                        {isSearchLoaded &&
-                        <div className="logo-container">
-                            <LogoSVG viewBox={windowWidth > 700 ? "-20 -20 100 70" : "0 0 50.51502 42.928498"}
-                                     className="logo-text hide"/>
-                        </div>
-                        }
-                        {!isSearchLoaded &&
+                <div className="search-container">
+                    <div className="screen-logo">
                         <React.Fragment>
                             <div className="logo-container">
                                 <LogoSVG viewBox={viewBoxLogoSVG} className="logo-text"/>
                             </div>
                         </React.Fragment>
-                        }
-
                     </div>
-                    <div className={isSearchLoaded ? "search-query-parent-loaded" : "search-query-parent"}>
+                    <div className="search-query-parent">
                         <div className="search-box-container" style={
                             isSuggestionLoaded ?
                                 {
@@ -115,7 +102,7 @@ class Searches extends React.Component {
                                 </div>
                             </div>
                             {isSuggestionLoaded &&
-                            <div className={isSearchLoaded ? "suggestion-parent-loaded" : "suggestion-parent"}>
+                            <div className="suggestion-parent">
                                 {searchSuggestions.map(
                                     suggestion =>
                                         <div key={suggestion} className="suggestion-option"
@@ -136,7 +123,7 @@ class Searches extends React.Component {
                                 }
                             </div>}
                         </div>
-                        <div className="category-container" id={isSearchLoaded ? "loaded" : " "}>
+                        <div className="category-container">
                             <div className={"ct-youtube-" + isBoxChecked['youtube-select']}
                                  onClick={this.toggleCheckbox}
                                  id="youtube-select">
@@ -182,27 +169,18 @@ class Searches extends React.Component {
 
                     </div>
                 </div>
-
-                {isSearchLoaded && <div className="list-videos"><ListVideos all_videos={all_videos}/></div>}
             </div>
         );
     }
 
     toggleCheckbox(e) {
         let checkbox_classes = this.state.isBoxChecked
-
-        console.log("toggle ", this.state)
         checkbox_classes[e.target.id] = checkbox_classes[e.target.id] === "unchecked" ? 'checked' : 'unchecked'
-
         this.setState({isBoxChecked: checkbox_classes});
     }
 
     handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
-    handleSize = (_) => {
-
-        this.setState({windowWidth: window.innerWidth})
-    }
     handleSuggestion = (e) => {
         this.setState({searchValue: e.target.value})
         clearTimeout(this.timeout)
@@ -218,23 +196,10 @@ class Searches extends React.Component {
         }, 100)
 
     }
-    handleSearch = (_) => {
-        if (this.state.isSearchLoading === false) {
-            this.setState({isSearchLoading: true})
-            let search_value = this.state.searchValue
-            if (search_value && search_value.length > 0) {
-                API.get(`search?query=${search_value}&filtering_type=movie`)
-                    .then((result) => {
-                        this.setState({
-                            all_videos: result.data.data,
-                            isSearchLoading: false,
-                            isSearchLoaded: true,
-                        })
-                    })
-                    .catch()
 
-            }
-        }
+    handleSearch = (_) => {
+        history.push(`search?query=${this.state.searchValue}&filtering_type=movie`)
+        window.location.reload()
     }
 }
 

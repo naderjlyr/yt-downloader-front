@@ -12,7 +12,7 @@ const AppRoutes = () => (
             <Searches/>
         </Route>
         {/*<Route path="/test" render={(props) => console.log(queryString.parse(props.location.search))}/>*/}
-        <Route path="/results" render={(props) => <Results query={queryString.parse(props.location.search)}/>}/>
+        <Route path="/search" render={(props) => <Results query={queryString.parse(props.location.search)}/>}/>
     </Router>
 )
 
