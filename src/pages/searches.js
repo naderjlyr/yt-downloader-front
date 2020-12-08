@@ -123,7 +123,7 @@ class Searches extends React.Component {
                                 }
                             </div>}
                         </div>
-                        <div className="category-container">
+                        <div className="filtering-type">
                             <div className={"ct-youtube-" + isBoxChecked['youtube-select']}
                                  onClick={this.toggleCheckbox}
                                  id="youtube-select">

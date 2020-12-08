@@ -133,54 +133,42 @@ class Results extends React.Component {
                                 }
                             </div>}
                         </div>
-                        <div className="category-container" id="loaded">
-                            <div className={"ct-youtube-" + isBoxChecked['youtube-select']}
-                                 onClick={this.toggleCheckbox}
-                                 id="youtube-select">
-                                <div className={"icon-checkbox-" + isBoxChecked['youtube-select']}
-                                     id="youtube-select"
-                                     onClick={this.toggleCheckbox}/>
-                                <div className="icon-youtube"/>
-                                <div className="label">Youtube</div>
-                            </div>
-                            <div className={"ct-movie-" + isBoxChecked['movie-select']}
-                                 onClick={this.toggleCheckbox}
-                                 id="movie-select">
-                                <div className={"icon-checkbox-" + isBoxChecked['movie-select']} id="movie-select"
-                                     onClick={this.toggleCheckbox}/>
-                                <div className="icon-movie"/>
-                                <div className="label">Movies & TV Series</div>
-                            </div>
-                            <div className={"ct-educational-" + isBoxChecked['educational-select']}
-                                 onClick={this.toggleCheckbox} id="educational-select">
-                                <div className={"icon-checkbox-" + isBoxChecked['educational-select']}
-                                     id="educational-select"
-                                     onClick={this.toggleCheckbox}/>
-                                <div className="icon-education"/>
-                                <div className="label">Educational</div>
-                            </div>
-                            <div className={"ct-music-" + isBoxChecked['music-select']}
-                                 onClick={this.toggleCheckbox}
-                                 id="music-select">
-                                <div className={"icon-checkbox-" + isBoxChecked['music-select']} id="music-select"
-                                     onClick={this.toggleCheckbox}/>
-                                <div className="icon-music"/>
-                                <div className="label">Music</div>
-                            </div>
-                            <div className={"ct-adult-" + isBoxChecked['adult-select']}
-                                 onClick={this.toggleCheckbox}
-                                 id="adult-select">
-                                <div className={"icon-checkbox-" + isBoxChecked['adult-select']} id="adult-select"
-                                     onClick={this.toggleCheckbox}/>
-                                <div className="icon-adult"/>
-                                <div className="label">Adult Content</div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+                <div className="list-videos">
+                    <div className="filtering-type-loaded">
+                        <div className={"ct-youtube-" + isBoxChecked['youtube-select']}
+                             onClick={this.toggleCheckbox}
+                             id="youtube-select">
+                            <div className="icon-youtube"/>
+                            <div className="label">Youtube</div>
+                        </div>
+                        <div className={"ct-movie-" + isBoxChecked['movie-select']}
+                             onClick={this.toggleCheckbox}
+                             id="movie-select">
+                            <div className="icon-movie"/>
+                            <div className="label">Movies</div>
+                        </div>
+                        <div className={"ct-educational-" + isBoxChecked['educational-select']}
+                             onClick={this.toggleCheckbox} id="educational-select">
+                            <div className="icon-education"/>
+                            <div className="label">Educational</div>
+                        </div>
+                        <div className={"ct-music-" + isBoxChecked['music-select']}
+                             onClick={this.toggleCheckbox}
+                             id="music-select">
+                            <div className="icon-music"/>
+                            <div className="label">Music</div>
+                        </div>
+                        <div className={"ct-adult-" + isBoxChecked['adult-select']}
+                             onClick={this.toggleCheckbox}
+                             id="adult-select">
+                            <div className="icon-adult"/>
+                            <div className="label">Adult</div>
+                        </div>
+                    </div>
 
-                <div className="list-videos"><ListVideos all_videos={all_videos}/></div>
+                    <ListVideos all_videos={all_videos}/></div>
             </div>
         );
     }

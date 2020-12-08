@@ -1,3 +1,8 @@
+$youtubeColor:#EE1B0D;
+$movieColor: #ef4f00;
+$educationalColor: #22c100;
+$musicColor: #006ae2;
+$adultColor: #c500d4;
 .main-container {
   display: flex;
   flex-direction: column;
@@ -6,10 +11,55 @@
 }
 
 .main-container-loaded {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  .filtering-type-loaded{
+    position: sticky;
+    //width:7%;
+    padding-right:8px;
+    z-index: 22;
+    left: 0;
+    top: 0;
+    background: #fff;
+    height: 100%;
+    div[class^="ct-"]{
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0 20px 0;
+      cursor: pointer;
+    &:hover{
+      background: #f3f3f3;
+      color: #000000;
+      border-left:2px solid #ccc;
+      animation: jello-horizontal 0.5s linear;
+
+    }
+      &:first-child{
+        background: #dbdbdb;
+        div.icon-youtube{
+          color: #000000;
+        }
+      }
 }
+    div[class^="icon-"] {
+    font-size:20px;
+      //pointer-events: none;
+      color:#828282;
+      padding-bottom:6px;
+      transition: all 700ms;
+    }
+    div.label{
+      font-family:Arial;
+      font-size:13px;
+    }
+  }
+}
+
 
 .search-container {
   width: 50%;
@@ -60,12 +110,14 @@
 .search-container-loaded {
   display: flex;
   width: 100%;
+  margin-top: 3%;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: flex-start;
-  padding-bottom: 50px;
   border-bottom: 2px solid #f3f3f3;
+  padding-bottom:20px;
+  .search-box-container{
+  }
 }
 
 .logo-text.hide {
@@ -75,6 +127,7 @@
 .screen-logo-loaded {
   display: block;
   width: 13%;
+  height:64px;
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
@@ -110,6 +163,7 @@
 }
 
 .list-videos {
+  display: flex;
   padding-left: 12px;
   padding-top: 12px;
   padding-right: 12px;
@@ -167,12 +221,11 @@
 }
 
 .search-query-parent-loaded {
-  //position: relative;
   display: flex;
   background: #fff;
   width: 80%;
+  height:64px;
   box-shadow: none;
-  margin-top: 3%;
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
@@ -184,14 +237,13 @@
   }
 }
 
-.category-container {
+.filtering-type {
   display: flex;
   position: absolute;
   z-index: -1;
   width: 100%;
   justify-content: center;
   margin-top: 80px;
-  display: none;
 
   div[class^="ct-"] {
     padding: 5px;
@@ -551,3 +603,42 @@
     fill: #000000;
   }
 }
+
+/* Responsive Design */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .list-videos {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .filtering-type-loaded {
+      position: sticky;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding-right: 8px;
+      z-index: 22;
+      left: 0;
+      bottom: 0;
+      background: #fff;
+      height: 100%;
+      div[class^="ct-"]{
+        padding: 10px 0 10px 0;
+      }
+    }
+  }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
