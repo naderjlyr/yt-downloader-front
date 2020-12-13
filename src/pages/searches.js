@@ -123,7 +123,7 @@ class Searches extends React.Component {
                                 }
                             </div>}
                         </div>
-                        <div className="category-container">
+                        <div className="filtering-type">
                             <div className={"ct-youtube-" + isBoxChecked['youtube-select']}
                                  onClick={this.toggleCheckbox}
                                  id="youtube-select">
@@ -139,7 +139,7 @@ class Searches extends React.Component {
                                 <div className={"icon-checkbox-" + isBoxChecked['movie-select']} id="movie-select"
                                      onClick={this.toggleCheckbox}/>
                                 <div className="icon-movie"/>
-                                <div className="label">Movies & TV Series</div>
+                                <div className="label">Movies</div>
                             </div>
                             <div className={"ct-educational-" + isBoxChecked['educational-select']}
                                  onClick={this.toggleCheckbox} id="educational-select">

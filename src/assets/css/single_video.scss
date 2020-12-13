@@ -8,7 +8,9 @@
   margin: 0;
   font-family: myFont;
 }
-
+.list-videos{
+  width:100%;
+}
 .sv-parent {
   display: flex;
   flex-direction: row;
@@ -68,7 +70,7 @@
   max-height: calc(2 * 2.4rem);
   overflow: hidden;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 2.4rem;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
@@ -222,6 +224,7 @@
 
 .sv-download-link {
   width:15%;
+
 }
 
 .sv-modal-overlay {
@@ -416,16 +419,22 @@
 @media only screen and (max-width: 600px) {
   .sv-parent{
     flex-direction: column;
-    padding-top:20px;
     .sv-thumbnail{
-      width:100%;
-      align-self: center;
+      width: 96%;
+      margin:0 auto;
+      padding:3px;
+      max-height:200px;
     }
     .sv-download-link{
-      width:100%;
+      width: 96%;
+      padding: 3px;
+      margin: 0 auto;
     }
     .sv-detail{
-      width:100%;
+      width: 96%;
+      margin:0 auto;
+      padding:3px;
+      text-align: justify;
       .sv-title{
         font-weight:700;
       }
@@ -438,13 +447,24 @@
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+  .sv-download-link{
+    width: 27%;
+    padding: 3px;
+    margin: 0 auto;
+  }
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+  .sv-download-link{
+    width:19%;
+  }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
