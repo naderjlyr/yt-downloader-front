@@ -68,7 +68,7 @@ class Results extends React.Component {
                 <div className="search-container-loaded">
                     <div className="screen-logo-loaded">
                         <div className="logo-container">
-                            <LogoSVG viewBox={windowWidth > 700 ? "-20 -20 100 70" : "0 0 50.51502 42.928498"}
+                            <LogoSVG viewBox={windowWidth > 700 ? "-20 0 100 70" : "-20 0 100 70"}
                                      className="logo-text hide"/>
                         </div>
                     </div>

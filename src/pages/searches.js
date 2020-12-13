@@ -64,7 +64,7 @@ class Searches extends React.Component {
                     </div>
                     <div className="search-query-parent">
                         <div className="search-box-container" style={
-                            isSuggestionLoaded ?
+                            isSuggestionLoaded && searchValue.length > 1?
                                 {
                                     borderBottomRightRadius: 0,
                                     borderBottomLeftRadius: 0,
@@ -87,7 +87,6 @@ class Searches extends React.Component {
                                                isSuggestionLoaded: false,
                                            })
                                        }, 200)}/>
-
                             <div className={searchValue.length > 0 ? "right-arrow" : "non-display"}
                                  onClick={this.handleSearch}>
                                 <div className="arrow">
