@@ -19,6 +19,9 @@ class ListVideos extends React.Component {
                             return items['data'].map(item => <SingleMovie key={Math.random()} single_video={item}/>)
                         case 'adult':
                             return items['data'].map(item => <SingleAdult single_video={item} key={Math.random()}/>)
+                        case 'music':
+                            return items['data'].map(item => console.log(item))
+                        // return items['data'].map(item => <SingleAdult single_video={item} key={Math.random()}/>)
                         case 'educational':
                             return items['data'].map(item => <SingleEducation single_video={item} key={Math.random()}/>)
                         case 'youtube':
