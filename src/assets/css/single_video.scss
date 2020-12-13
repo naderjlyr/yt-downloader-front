@@ -6,7 +6,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "myFont";
+  font-family: "myFont",serif;
 }
 .list-videos{
   width:100%;
@@ -40,7 +40,10 @@
 display: block;
   margin: 0 auto;
   width: 50%;
-  box-shadow: 0 2px 8px #222;
+  height:90%;
+  box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.68);
+  position: relative;
+  z-index: 2;
 }
 
 .sv-video-duration {
@@ -54,9 +57,13 @@ display: block;
 }
 
 .sv-thumbnail {
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   width:20%;
-  margin:2%;
+  display: flex;
+  align-items: center;
+  //margin:2%;
 }
 .sv-detail {
   display: flex;
@@ -272,7 +279,7 @@ display: block;
   z-index: 5;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  font-family: myFont, Serif;
+  font-family: "myFont",serif;
 }
 
 .sv-modal-head {
@@ -325,7 +332,7 @@ display: block;
 
 /* Accordion styles */
 .sv-modal-qualities {
-  border-radius: 0px;
+  border-radius: 0;
   overflow: hidden;
   width: 100%;
 }
@@ -439,21 +446,22 @@ display: block;
         font-weight:700;
       }
       .sv-description{
-        padding:10px 10px 10px 0px;
+        padding:10px 10px 10px 0;
         max-height: fit-content;
       }
     }
   }
 }
 .back-blur{
-  filter: blur(8px) grayscale(1);
-  -webkit-filter: blur(10px);
+  //filter: blur(8px) grayscale(1);
+  //-webkit-filter: blur(10px);
   width: 100%;
   height: 100%;
   display: block;
-  background-size: cover;
+  //background-size: cover;
   position: absolute;
-  z-index: -2;
+  backdrop-filter: blur(8px);
+  z-index: 1;
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {

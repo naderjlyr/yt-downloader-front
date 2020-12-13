@@ -72,9 +72,9 @@ class SingleMovie extends React.Component {
                     close={this.toggleDownloadLinks}/>
 
                 <div className="sv-parent" key={Math.random()}>
-                    <div className="sv-thumbnail">
+                    <div className="sv-thumbnail" style={{backgroundImage:`url(${image})`}}>
                         {/*<VideoSVG/>*/}
-                        <div className="back-blur" style={{backgroundImage:`url(${image})`}}></div>
+                        <div className="back-blur"></div>
                         <img alt="YTS DOWNLOADER" src={image} className="sv-thumbnail-image"/>
                         <div className="sv-video-duration">
                             {duration}
