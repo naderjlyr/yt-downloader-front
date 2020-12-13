@@ -11,7 +11,7 @@ class ListVideos extends React.Component {
     render() {
         const {all_videos} = this.props
         return (
-            <div>
+            <div className="list-videos-container">
                 {all_videos.map(items => {
                     switch (items['type']) {
                         case 'movie':

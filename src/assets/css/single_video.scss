@@ -6,7 +6,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: myFont;
+  font-family: "myFont";
 }
 .list-videos{
   width:100%;
@@ -15,7 +15,9 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 2%;
+  border-bottom: 2px solid #bebebe;
+  box-shadow: 0 1px 9px #b4b4b4;
 }
 
 .sv-metadata-line {
@@ -35,8 +37,10 @@
 }
 
 .sv-thumbnail-image {
-  width: 100%;
-  height: 100%;
+display: block;
+  margin: 0 auto;
+  width: 50%;
+  box-shadow: 0 2px 8px #222;
 }
 
 .sv-video-duration {
@@ -51,14 +55,15 @@
 
 .sv-thumbnail {
   position: relative;
-  width:15%;
-  height:150px;
+  width:20%;
+  margin:2%;
 }
 .sv-detail {
   display: flex;
   flex-direction: column;
   margin-left: 2vh;
   width: 70%;
+  justify-content: center;
 }
 
 .sv-title {
@@ -102,7 +107,6 @@
 }
 
 .sv-owner {
-  //padding-top: 5px;
   color: #606060;
   max-width: 100%;
   display: block;
@@ -173,14 +177,14 @@
 }
 
 .sv-quick-download-icon-text {
-  //padding-bottom: 10px;
   font-size: 12px;
   text-align: center;
 }
 
 .sv-download-video {
   text-align: -webkit-center;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   display: flex;
   transition: height 2s;
   border: 1px solid #dfe1e5;
@@ -232,12 +236,10 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  //display: block;
   display: none;
   z-index: 3;
   overflow: auto;
   top: 0;
-  //top: -1000px;
   transition: all .3s ease;
   overflow-x: hidden;
   @media (max-width: 480px) {
@@ -249,7 +251,6 @@
 
 .sv-modal-overlay.open {
   display: block;
-  //transform: translateY(1000px);
 }
 
 .sv-modal-close-button {
@@ -304,7 +305,6 @@
   height: auto;
   display: flex;
   font-size: 2vh;
-  //box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -419,11 +419,11 @@
 @media only screen and (max-width: 600px) {
   .sv-parent{
     flex-direction: column;
+    padding: 7% 0 7% 0;
     .sv-thumbnail{
-      width: 96%;
+      width: 85%;
       margin:0 auto;
-      padding:3px;
-      max-height:200px;
+      height:fit-content;
     }
     .sv-download-link{
       width: 96%;
@@ -445,12 +445,20 @@
     }
   }
 }
-
+.back-blur{
+  filter: blur(8px) grayscale(1);
+  -webkit-filter: blur(10px);
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: cover;
+  position: absolute;
+  z-index: -2;
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .sv-download-link{
     width: 27%;
-    padding: 3px;
     margin: 0 auto;
   }
 }

@@ -21,12 +21,10 @@ div#root{
 .main-container-loaded {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   flex-direction: row;
   flex-wrap: wrap;
   .filtering-type-loaded{
     position: sticky;
-    //width:7%;
     padding-right:8px;
     z-index: 22;
     left: 0;
@@ -122,7 +120,6 @@ div#root{
   flex-wrap: wrap;
   justify-content: flex-start;
   border-bottom: 2px solid #f3f3f3;
-  //padding-bottom:20px;
   .search-box-container{
     max-height:50px;
   }
@@ -136,24 +133,13 @@ div#root{
   display: flex;
   flex-grow: 0;
   flex-basis: 100px;
-  //width: 163px;
-  //height: 64px;
-  //flex-grow: 0;
-  //flex-shrink: 1;
-  //flex-basis: auto;
-  //align-self: auto;
-  //order: 0;
 
   .logo-svg {
     width: 100%;
-    //margin: 0 auto;
-    //display: block;
   }
 
   .logo-container {
     display: flex;
-    //align-items: center;
-    //height: 100%;
   }
 }
 
@@ -173,11 +159,10 @@ div#root{
 
 .list-videos {
   display: flex;
-  //padding-left: 12px;
-  //padding-top: 12px;
-  //padding-right: 12px;
 }
-
+.list-videos-container{
+  padding: 20px;
+}
 .right-arrow {
   cursor: pointer;
   align-self: center;
@@ -217,7 +202,6 @@ div#root{
 }
 
 .search-query-parent {
-  //position: relative;
   background: #fff;
   display: flex;
   flex-wrap: wrap;
@@ -251,7 +235,6 @@ div#root{
 
   div[class^="ct-"] {
     padding: 5px;
-    //font-size: 20px;
     font-weight: 700;
     display: flex;
     flex-direction: row;
@@ -636,9 +619,6 @@ div#root{
   .search-container-loaded{
     .search-box-container{
       width:100%;
-      //.search-query{
-      //  height:25vh;
-      //}
     }
   }
   .list-videos {
@@ -680,7 +660,5 @@ div#root{
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  //.search-box-container{
-  //  width:57%;
-  //}
+
 }
