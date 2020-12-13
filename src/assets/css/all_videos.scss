@@ -21,12 +21,10 @@ div#root{
 .main-container-loaded {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   flex-direction: row;
   flex-wrap: wrap;
   .filtering-type-loaded{
     position: sticky;
-    //width:7%;
     padding-right:8px;
     z-index: 22;
     left: 0;
@@ -38,17 +36,14 @@ div#root{
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 0 20px 0;
+      padding: 20px 5px 20px 5px;
       cursor: pointer;
     &:hover{
-      background: #f3f3f3;
       color: #000000;
-      border-left:2px solid #ccc;
       animation: jello-horizontal 0.5s linear;
 
     }
       &:first-child{
-        background: #dbdbdb;
         div.icon-youtube{
           color: #000000;
         }
@@ -56,12 +51,13 @@ div#root{
 }
     div[class^="icon-"] {
     font-size:20px;
-      //pointer-events: none;
+      pointer-events: none;
       color:#828282;
       padding-bottom:6px;
       transition: all 700ms;
     }
     div.label{
+      pointer-events: none;
       font-family:Arial;
       font-size:13px;
     }
@@ -118,13 +114,14 @@ div#root{
 .search-container-loaded {
   display: flex;
   width: 100%;
-  margin-top: 3%;
+  height:70px;
+  margin-top: 2%;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   border-bottom: 2px solid #f3f3f3;
-  padding-bottom:20px;
   .search-box-container{
+    max-height:50px;
   }
 }
 
@@ -133,26 +130,16 @@ div#root{
 }
 
 .screen-logo-loaded {
-  display: block;
-  width: 13%;
-  height:64px;
+  display: flex;
   flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: auto;
-  order: 0;
+  flex-basis: 100px;
 
   .logo-svg {
     width: 100%;
   }
 
   .logo-container {
-    width: 100%;
-    height: 27%;
-    margin: 0 auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 
@@ -172,11 +159,10 @@ div#root{
 
 .list-videos {
   display: flex;
-  padding-left: 12px;
-  padding-top: 12px;
-  padding-right: 12px;
 }
-
+.list-videos-container{
+  padding: 20px;
+}
 .right-arrow {
   cursor: pointer;
   align-self: center;
@@ -216,7 +202,6 @@ div#root{
 }
 
 .search-query-parent {
-  //position: relative;
   background: #fff;
   display: flex;
   flex-wrap: wrap;
@@ -230,18 +215,12 @@ div#root{
 
 .search-query-parent-loaded {
   display: flex;
-  background: #fff;
-  width: 80%;
-  height:64px;
-  box-shadow: none;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: center;
-  order: 0;
+  flex-grow: 2;
+  align-self: flex-start;
 
   .search-box-container {
     width: 55%;
+    max-height:50px;
   }
 }
 
@@ -256,7 +235,6 @@ div#root{
 
   div[class^="ct-"] {
     padding: 5px;
-    //font-size: 20px;
     font-weight: 700;
     display: flex;
     flex-direction: row;
@@ -281,6 +259,7 @@ div#root{
   .icon-education,
   .icon-music,
   .icon-adult {
+    padding:0 10px 0 10px;
     display: none;
   }
 
@@ -310,6 +289,7 @@ div#root{
 .search-box-container {
   position: relative;
   width: 100%;
+  height: 50px;
   border: 1px solid #dfe1e5;
   border-radius: 30px;
   display: flex;
@@ -318,6 +298,7 @@ div#root{
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
+  align-self: center;
 
   &:hover {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
@@ -329,7 +310,7 @@ div#root{
   }
 
   .search-query {
-    height: 60px;
+    height: 100%;
     font-size: 20px;
     border: none;
     display: block;
@@ -340,6 +321,7 @@ div#root{
     order: 0;
     border-radius:30px;
     z-index: 3;
+    height: 100%;
 
     &:focus {
       border: none;
@@ -365,7 +347,7 @@ div#root{
     order: 0;
     width: 100%;
     z-index: 2;
-    box-shadow: 0px 7px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 7px 8px rgba(0, 0, 0, 0.2);
 
     .suggestion-option {
       cursor: pointer;
@@ -375,6 +357,9 @@ div#root{
       border-radius: 2px;
       transition-duration: .3s;
       min-height: 20px;
+      &:first-child{
+        border-top:1px solid #ccc;
+      }
 
       .suggestion-text {
         align-self: center;
@@ -614,8 +599,14 @@ div#root{
 
 /* Responsive Design */
 /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px){
+  .screen-logo-loaded{
+    display: none;
+  }
+}
 @media only screen and (max-width: 600px) {
   .search-container{
+
     width:100%;
     padding-top:30%;
     .screen-logo{
@@ -623,6 +614,11 @@ div#root{
     }
     .filtering-type{
       font-size: 8px;
+    }
+  }
+  .search-container-loaded{
+    .search-box-container{
+      width:100%;
     }
   }
   .list-videos {
@@ -634,12 +630,16 @@ div#root{
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      padding-right: 8px;
+      padding-right: 0;
       z-index: 22;
       left: 0;
       bottom: 0;
       background: #fff;
-      height: 100%;
+      height:60px;
+      align-items: center;
+      div.label{
+        display: none;
+      }
       div[class^="ct-"]{
         padding: 10px 0 10px 0;
       }
@@ -659,4 +659,6 @@ div#root{
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+
+}
