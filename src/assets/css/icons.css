@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'myIcons' !important;
-    speak: none;
+    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -61,11 +61,54 @@
 .icon-music:before {
     content: "\e911";
 }
+.icon-playing:before {
+    content: "\ea15";
+}
+.icon-pause:before {
+    content: "\ea16";
+}
+.icon-stop:before {
+    content: "\ea17";
+}
+.icon-previous:before {
+    content: "\ea18";
+}
+.icon-next:before {
+    content: "\ea19";
+}
+.icon-backward:before {
+    content: "\ea1a";
+}
+.icon-forward:before {
+    content: "\ea1b";
+}
+.icon-volume-high:before {
+    content: "\ea26";
+}
+.icon-volume-medium:before {
+    content: "\ea27";
+}
+.icon-volume-low:before {
+    content: "\ea28";
+}
+.icon-volume-mute:before {
+    content: "\ea29";
+}
+.icon-volume-mute2:before {
+    content: "\ea2a";
+}
+.icon-volume-increase:before {
+    content: "\ea2b";
+}
+.icon-volume-decrease:before {
+    content: "\ea2c";
+}
 .icon-checkbox-unchecked:before {
     content: "\ea53";
 }
 .icon-youtube:before {
     content: "\ea9d";
 }
+
 
 

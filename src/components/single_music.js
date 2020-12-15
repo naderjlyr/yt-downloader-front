@@ -1,6 +1,7 @@
 import React from "react"
 import ReactPlayer from "react-player";
-
+import sampleImage from "../assets/image/artworks-000114458540-d58dfh-t500x500.jpg"
+import sampleFile from "../assets/file.mp3"
 class SingleMusic extends React.Component {
 
     constructor(props) {
@@ -20,30 +21,37 @@ class SingleMusic extends React.Component {
 
     render() {
         const {playing, loaded, played, playedSeconds} = this.state
-        let playing_text = playing ? "Playing..." : "Pause"
+        let playing_text = playing ? "pause" : "playing"
         return (
             <>
-                <div style={{top: 0}}>
-                    <ReactPlayer height={0} width={0}
-                                 ref={this.ref}
-                                 onProgress={(state) => this.setState(state)}
-
-                                 url="https://free.mp3-download.best/-mqyCvH:BstBN" playing={playing}/>
-                    <div onClick={this.togglePlaying}>
-                        {playing_text}
+                <div className="sm-parent">
+                    <div className="sm-thumbnail">
+                        <img src={sampleImage} className="sm-thumbnail-image" alt="filename"/>
                     </div>
-                    LOADED
-                    <progress max={1} value={loaded}/>
-                    PLAYED ({parseInt(playedSeconds)})
-                    <progress max={1} value={played}/>
-                    SEEK
-                    <input
-                        type='range' min={0} max={0.999999} step='any'
-                        value={played}
-                        onMouseDown={this.handleSeekMouseDown}
-                        onChange={this.handleSeekChange}
-                        onMouseUp={this.handleSeekMouseUp}
-                    />
+                    <div className="sm-player">
+                        <div className="sm-details">
+                            <div className="sm-title">Adele - Someone Like You</div>
+                        </div>
+                        <ReactPlayer height={0} width={0}
+                                     ref={this.ref}
+                                     onProgress={(state) => this.setState(state)}
+                                     url={sampleFile}
+                                     playing={playing} />
+                        {/*{playing_text}*/}
+                        <div className={"icon-" + playing_text} onClick={this.togglePlaying} />
+                        <div className="sm-player-progress">
+                            <div className="loaded" style={{width: `${loaded * 100}%`}}/>
+                            <div className="played" style={{width: `${played * 100}%`}}/>
+                            <input
+                                type='range' min={0} max={0.999999} step='any'
+                                value={played}
+                                onMouseDown={this.handleSeekMouseDown}
+                                onChange={this.handleSeekChange}
+                                onMouseUp={this.handleSeekMouseUp}
+                                className="seek"/>
+                        </div>
+                    </div>
+
                 </div>
             </>
         );
