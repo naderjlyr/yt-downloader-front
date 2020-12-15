@@ -15,25 +15,23 @@ class Results extends React.Component {
         this.state = {
             searchSuggestions: [],
             isSuggestionLoaded: false,
-            searchValue: '',
-            isYoutubeLoaded: false,
-            viewBoxLogoSVG: "0 0 150.51502 42.928498",
+            searchValue: props.query.query,
             all_videos: [],
-            chosenPlatform: 'all',
-            windowWidth: window.innerWidth,
-            isBoxChecked: {
-                "youtube-select": "unchecked", "movie-select": "unchecked",
-                "educational-select": "unchecked", "music-select": "unchecked", "adult-select": "unchecked",
-            },
         }
-        console.log(props.query)
+        this.isBoxChecked = {
+            youtube: "unchecked",
+            movie: "unchecked",
+            educational: "unchecked",
+            music: "unchecked",
+            adult: "unchecked",
+        }
+        this.isBoxChecked[props.query.filtering_type] = "checked"
         this.toggleCheckbox = this.toggleCheckbox.bind(this);
     }
 
     componentDidMount() {
 
         document.addEventListener("keyup", this.handleEnter)
-        window.addEventListener("resize", this.handleSize);
         let search_value = this.props.query.query
         let filtering_type = this.props.query.filtering_type
         if (search_value && search_value.length > 0) {
@@ -41,7 +39,6 @@ class Results extends React.Component {
                 .then((result) => {
                     this.setState({
                         all_videos: result.data.data,
-                        searchValue: search_value,
                     })
                 })
                 .catch()
@@ -50,14 +47,11 @@ class Results extends React.Component {
 
     componentWillUnmount() {
         document.removeEventListener("keyup", this.handleEnter)
-        window.addEventListener("resize", this.handleSize);
     }
 
 
     render() {
         let {
-            windowWidth,
-            isBoxChecked,
             searchSuggestions,
             isSuggestionLoaded,
             searchValue,
@@ -68,7 +62,7 @@ class Results extends React.Component {
                 <div className="search-container-loaded">
                     <div className="screen-logo-loaded">
                         <div className="logo-container">
-                            <LogoSVG viewBox={windowWidth > 700 ? "-20 0 100 70" : "-20 0 100 70"}
+                            <LogoSVG viewBox="-20 0 100 70"
                                      className="logo-text hide"/>
                         </div>
                     </div>
@@ -137,32 +131,32 @@ class Results extends React.Component {
                 </div>
                 <div className="list-videos">
                     <div className="filtering-type-loaded">
-                        <div className={"ct-youtube-" + isBoxChecked['youtube-select']}
+                        <div className={"ct-youtube-" + this.isBoxChecked['youtube']}
                              onClick={this.toggleCheckbox}
-                             id="youtube-select">
+                             id="youtube">
                             <div className="icon-youtube"/>
                             <div className="label">Youtube</div>
                         </div>
-                        <div className={"ct-movie-" + isBoxChecked['movie-select']}
+                        <div className={"ct-movie-" + this.isBoxChecked['movie']}
                              onClick={this.toggleCheckbox}
-                             id="movie-select">
+                             id="movie">
                             <div className="icon-movie"/>
                             <div className="label">Movies</div>
                         </div>
-                        <div className={"ct-educational-" + isBoxChecked['educational-select']}
-                             onClick={this.toggleCheckbox} id="educational-select">
+                        <div className={"ct-educational-" + this.isBoxChecked['educational']}
+                             onClick={this.toggleCheckbox} id="educational">
                             <div className="icon-education"/>
                             <div className="label">Educational</div>
                         </div>
-                        <div className={"ct-music-" + isBoxChecked['music-select']}
+                        <div className={"ct-music-" + this.isBoxChecked['music']}
                              onClick={this.toggleCheckbox}
-                             id="music-select">
+                             id="music">
                             <div className="icon-music"/>
                             <div className="label">Music</div>
                         </div>
-                        <div className={"ct-adult-" + isBoxChecked['adult-select']}
+                        <div className={"ct-adult-" + this.isBoxChecked['adult']}
                              onClick={this.toggleCheckbox}
-                             id="adult-select">
+                             id="adult">
                             <div className="icon-adult"/>
                             <div className="label">Adult</div>
                         </div>
@@ -174,19 +168,11 @@ class Results extends React.Component {
     }
 
     toggleCheckbox(e) {
-        let checkbox_classes = this.state.isBoxChecked
-
-        checkbox_classes[e.target.id] = checkbox_classes[e.target.id] === "unchecked" ? 'checked' : 'unchecked'
-
-        this.setState({isBoxChecked: checkbox_classes});
+        this.handleSearch(e, e.target.id)
     }
 
     handleEnter = (e) => e.key === "Enter" && this.handleSearch()
 
-    handleSize = (_) => {
-
-        this.setState({windowWidth: window.innerWidth})
-    }
     handleSuggestion = (e) => {
         this.setState({searchValue: e.target.value})
         clearTimeout(this.timeout)
@@ -202,8 +188,8 @@ class Results extends React.Component {
         }, 100)
 
     }
-    handleSearch = (_) => {
-        history.push(`search?query=${this.state.searchValue}&filtering_type=movie`)
+    handleSearch = (_, filtering_type = this.props.query.filtering_type) => {
+        history.push(`search?query=${this.state.searchValue}&filtering_type=${filtering_type}`)
         window.location.reload()
     }
 }
