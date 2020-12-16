@@ -10,7 +10,7 @@ class SingleMusic extends React.Component {
             loaded: 0,
             playedSeconds: 0,
             played: 0,
-            playing: false
+            playing: false,
         }
         this.togglePlaying = this.togglePlaying.bind(this)
     }
@@ -21,24 +21,36 @@ class SingleMusic extends React.Component {
 
     render() {
         const {playing, loaded, played, playedSeconds} = this.state
-        let playing_text = playing ? "pause" : "playing"
+        let playing_text = playing ? "pause" : "play"
         return (
             <>
                 <div className="sm-parent">
-                    <div className="sm-thumbnail">
-                        <img src={sampleImage} className="sm-thumbnail-image" alt="filename" onClick={this.togglePlaying}/>
-                        <div className={"icon-" + playing_text} />
+                    <div className="sm-song">
+                        <div className="sm-thumbnail">
+                            <img src={sampleImage} className="sm-thumbnail-image" alt="filename" onClick={this.togglePlaying}/>
+                            <div className={"icon-" + playing_text} />
+                        </div>
+                        <div className="sm-details">
+                            <div className="sm-title">
+                                <div className="sm-name">Someone Like You</div>
+                                <div className="sm-artist">By Adele</div>
+                            </div>
+                            <div className="sm-duration">03:24</div>
+                            <div className="sm-download-links">
+                                <div className="icon-download2"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="sm-details">
-                        <div className="sm-title">Adele - Someone Like You</div>
-                    </div>
-
-                    <div className="sm-player"><ReactPlayer height={0} width={0}
-                                     ref={this.ref}
-                                     onProgress={(state) => this.setState(state)}
-                                     url={sampleFile}
-                                     playing={playing} />
-                        {/*{playing_text}*/}
+                    <div className="sm-player">
+                        <ReactPlayer height={0} width={0}
+                                                            ref={this.ref}
+                                                            onProgress={(state) => this.setState(state)}
+                                                            url={sampleFile}
+                                                            playing={playing} />
+                        <div className="sm-player-controls">
+                            <div className="icon-play3" />
+                        </div>
+                        <div className="sm-player-elapsed">{playedSeconds}</div>
                         <div className="sm-player-progress">
                             <div className="loaded" style={{width: `${loaded * 100}%`}}/>
                             <div className="played" style={{width: `${played * 100}%`}}/>
@@ -50,12 +62,12 @@ class SingleMusic extends React.Component {
                                 onMouseUp={this.handleSeekMouseUp}
                                 className="seek"/>
                         </div>
-                    </div>
-                    <div className="sm-download-links">
-                        <div className="sm-download-link">Click to Downlaod</div>
+                        <div className="sm-player-duration">4:55</div>
+                        <div className="sm-player-volume"><div className="icon-volume-medium"></div></div>
                     </div>
 
                 </div>
+
             </>
         );
     }
