@@ -55,13 +55,19 @@
 .icon-mp3-outline:before {
     content: "\e905";
 }
+.icon-download:before {
+    content: "\e90b";
+}
+.icon-download2:before {
+    content: "\e90c";
+}
 .icon-movie:before {
     content: "\e906";
 }
 .icon-music:before {
     content: "\e911";
 }
-.icon-playing:before {
+.icon-play:before {
     content: "\ea15";
 }
 .icon-pause:before {
@@ -81,6 +87,36 @@
 }
 .icon-forward:before {
     content: "\ea1b";
+}
+.icon-play3:before {
+    content: "\ea1c";
+}
+.icon-pause2:before {
+    content: "\ea1d";
+}
+.icon-stop2:before {
+    content: "\ea1e";
+}
+.icon-backward2:before {
+    content: "\ea1f";
+}
+.icon-forward3:before {
+    content: "\ea20";
+}
+.icon-first:before {
+    content: "\ea21";
+}
+.icon-last:before {
+    content: "\ea22";
+}
+.icon-previous2:before {
+    content: "\ea23";
+}
+.icon-next2:before {
+    content: "\ea24";
+}
+.icon-eject:before {
+    content: "\ea25";
 }
 .icon-volume-high:before {
     content: "\ea26";
@@ -109,6 +145,3 @@
 .icon-youtube:before {
     content: "\ea9d";
 }
-
-
-
