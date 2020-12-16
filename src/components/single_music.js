@@ -26,19 +26,19 @@ class SingleMusic extends React.Component {
             <>
                 <div className="sm-parent">
                     <div className="sm-thumbnail">
-                        <img src={sampleImage} className="sm-thumbnail-image" alt="filename"/>
+                        <img src={sampleImage} className="sm-thumbnail-image" alt="filename" onClick={this.togglePlaying}/>
+                        <div className={"icon-" + playing_text} />
                     </div>
-                    <div className="sm-player">
-                        <div className="sm-details">
-                            <div className="sm-title">Adele - Someone Like You</div>
-                        </div>
-                        <ReactPlayer height={0} width={0}
+                    <div className="sm-details">
+                        <div className="sm-title">Adele - Someone Like You</div>
+                    </div>
+
+                    <div className="sm-player"><ReactPlayer height={0} width={0}
                                      ref={this.ref}
                                      onProgress={(state) => this.setState(state)}
                                      url={sampleFile}
                                      playing={playing} />
                         {/*{playing_text}*/}
-                        <div className={"icon-" + playing_text} onClick={this.togglePlaying} />
                         <div className="sm-player-progress">
                             <div className="loaded" style={{width: `${loaded * 100}%`}}/>
                             <div className="played" style={{width: `${played * 100}%`}}/>
@@ -50,6 +50,9 @@ class SingleMusic extends React.Component {
                                 onMouseUp={this.handleSeekMouseUp}
                                 className="seek"/>
                         </div>
+                    </div>
+                    <div className="sm-download-links">
+                        <div className="sm-download-link">Click to Downlaod</div>
                     </div>
 
                 </div>
