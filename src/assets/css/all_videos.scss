@@ -48,7 +48,7 @@ div#root {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 5px 20px 5px;
+      padding: 14px 5px 20px 5px;
       cursor: pointer;
 
       &:hover {
@@ -182,7 +182,7 @@ div#root {
 
 .list-videos-container {
   padding: 20px;
-  background-color: #eee;
+  background-color: #eeeeee82;
   width: 100%;
   min-height: 100vh;
   height: 100%;
@@ -659,7 +659,6 @@ div#root {
       position: sticky;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
       padding-right: 0;
       z-index: 22;
       left: 0;
@@ -673,7 +672,8 @@ div#root {
       }
 
       div[class^="ct-"] {
-        padding: 10px 0 10px 0;
+        width: 100%;
+        margin: 1px
       }
     }
   }

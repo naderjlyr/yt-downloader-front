@@ -40,10 +40,10 @@
   display: block;
   margin: 0 auto;
   width: 50%;
-  height: 90%;
+  height: auto;
   box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.68);
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .sv-video-duration {
@@ -178,6 +178,13 @@
   padding: 10px;
   cursor: pointer;
   width: 100%;
+  &:hover{
+    background-color: #eee;
+    -moz-transition: all .3s ease-out;
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+
+  }
 }
 
 .sv-quick-download-icon {
