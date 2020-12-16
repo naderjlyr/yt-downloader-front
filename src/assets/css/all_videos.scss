@@ -28,18 +28,18 @@ div#root {
 
   .filtering-type-loaded {
     position: sticky;
-    padding-right: 8px;
     z-index: 22;
     left: 0;
     top: 0;
     background: #fff;
     height: 100%;
+    color: #6d6a6a;
 
     div[class^="ct-"][class$="-checked"] {
       div[class^="icon-"] {
         color: #000000;
       }
-
+      color: #000000;
       background-color: #eee;
     }
 

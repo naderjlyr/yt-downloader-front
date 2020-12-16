@@ -122,6 +122,7 @@ class SingleAdult extends React.Component {
                     <div className="sv-description">{description}</div>
                 </div>
                 <div className="sv-download-link">
+                    {quick_accesses.length > 0 &&
                     <div className="sv-download-video" onClick={this.toggleDownloadVideoOpen}>
                         {quick_accesses.map(quick_access =>
                             <div className="sv-quick-download" onClick={(_) => window.open(quick_access['link'])}>
@@ -129,7 +130,7 @@ class SingleAdult extends React.Component {
                                 <span className="sv-quick-download-icon-text">
                             {quick_access['quality']}</span>
                             </div>)}
-                    </div>
+                    </div>}
                     {
                         <div id="sv-download-video-options" className={this.state.downloadVideoOptions}>
                             {Object.keys(downloads).map(videoLink =>

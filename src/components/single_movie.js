@@ -72,9 +72,9 @@ class SingleMovie extends React.Component {
                     close={this.toggleDownloadLinks}/>
 
                 <div className="sv-parent" key={Math.random()}>
-                    <div className="sv-thumbnail" style={{backgroundImage:`url(${image})`}}>
+                    <div className="sv-thumbnail" style={{backgroundImage: `url(${image})`}}>
                         {/*<VideoSVG/>*/}
-                        <div className="back-blur"></div>
+                        <div className="back-blur"/>
                         <img alt="YTS DOWNLOADER" src={image} className="sv-thumbnail-image"/>
                         <div className="sv-video-duration">
                             {duration}
@@ -95,6 +95,7 @@ class SingleMovie extends React.Component {
                         <div className="sv-description">{description}</div>
                     </div>
                     <div className="sv-download-link">
+                        {quick_accesses.length > 0 &&
                         <div className="sv-download-video" onClick={this.toggleDownloadVideoOpen}>
                             {quick_accesses.map(quick_access =>
                                 <div className="sv-quick-download" onClick={(_) => window.open(quick_access['link'])}>
@@ -102,7 +103,7 @@ class SingleMovie extends React.Component {
                                     <span className="sv-quick-download-icon-text">
                             {quick_access['quality']}</span>
                                 </div>)}
-                        </div>
+                        </div>}
                         {
                             <div id="sv-download-video-options" className={this.state.downloadVideoOptions}>
                                 {Object.keys(downloads).map(videoLink =>
@@ -117,7 +118,7 @@ class SingleMovie extends React.Component {
                             </div>
                         }
                         <div className="sv-download-audio" onClick={this.toggleDownloadLinks}>
-                            Other Formats
+                            Download Links
                             <DropSVG className="sv-dropdown-svg"/>
                         </div>
                         {
