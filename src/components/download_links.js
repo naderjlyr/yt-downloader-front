@@ -39,9 +39,11 @@ class DownloadLinkModal extends React.Component {
                                                             {downloads[quality].map(movie =>
                                                                 <div key={Math.random()}
                                                                      className="sv-modal-single-download-link">
-                                                                    <div className="url-link"
+
+                                                                    <div className="url-section"
                                                                          onClick={() => window.open(movie.link, '_blank')}>
-                                                                        {movie.title}
+                                                                        <div className="icon-download"/>
+                                                                        <div className="url-link">{movie.title}</div>
                                                                     </div>
                                                                 </div>
                                                             )}

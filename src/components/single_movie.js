@@ -110,6 +110,7 @@ class SingleMovie extends React.Component {
                                     <div>{videoLink}
                                         {downloads[videoLink].map(video_link =>
                                             <div key={Math.random()} className="sv-download-video-option">
+                                                <div className="icon-download"/>
                                                 <a href={video_link['link'][0]}>{video_link['title']}</a>
                                             </div>
                                         )}

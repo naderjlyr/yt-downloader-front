@@ -175,10 +175,9 @@
   transition: height 2s;
   border: 1px solid #dfe1e5;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
-  padding: 10px 20px 10px 20px;
+  padding: 10px;
   cursor: pointer;
-  min-width: 14vw;
-
+  width: 100%;
 }
 
 .sv-quick-download-icon {
@@ -201,7 +200,7 @@
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   padding: 10px;
   margin-top: 10px;
-  min-width: 15vw;
+  width: 100%;
 }
 
 .sv-dropdown-svg {
@@ -240,6 +239,7 @@
 
 .sv-download-link {
   width: 15%;
+  min-width: 15vw;
   padding-right: 10px;
 
 }
@@ -298,7 +298,7 @@
   -transition-delay: .2s;
 
   &:hover {
-    background: #00d9ff;
+    background: #007bff;
     -moz-transition: all .5s ease-out;
     -webkit-transition: all .5s ease-out;
     -o-transition: all .5s ease-out;
@@ -442,7 +442,15 @@
 }
 
 .url-link {
-  color: blue;
+ margin-left: 8px;
+  color: #007bff;
+}
+
+.url-section {
+  display: flex;
+  flex-direction: row;
+  color: black;
+
 }
 
 // :checked
@@ -464,6 +472,9 @@
     }
 
     .sv-modal-quality-content div.url-link:hover {
+      text-decoration: underline;
+    }
+   .sv-modal-quality-content div.url-section:hover {
       text-decoration: underline;
     }
 
