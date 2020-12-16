@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: space-between;
     .sm-thumbnail {
+      cursor: pointer;
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
@@ -63,6 +64,7 @@
     display: inline-flex;
     align-items: center;
     .sm-player-controls{
+      cursor: pointer;
     }
     .sm-player-elapsed{
     }

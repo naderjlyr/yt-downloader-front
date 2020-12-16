@@ -3,6 +3,7 @@ import SingleAdult from "./single_adult";
 import SingleEducation from "./single_education";
 import SingleYoutube from "./single_youtube";
 import SingleMovie from "./single_movie";
+import SingleMusic from "./single_music";
 
 
 class ListVideos extends React.Component {
@@ -20,7 +21,7 @@ class ListVideos extends React.Component {
                         case 'adult':
                             return items['data'].map(item => <SingleAdult single_video={item} key={Math.random()}/>)
                         case 'music':
-                            return items['data'].map(item => console.log(item))
+                            return items['data'].map(item => <SingleMusic single_music={item} key={Math.random()}/>)
                         // return items['data'].map(item => <SingleAdult single_video={item} key={Math.random()}/>)
                         case 'educational':
                             return items['data'].map(item => <SingleEducation single_video={item} key={Math.random()}/>)

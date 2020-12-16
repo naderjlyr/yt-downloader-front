@@ -2,6 +2,7 @@ import React from "react"
 import ReactPlayer from "react-player";
 import sampleImage from "../assets/image/artworks-000114458540-d58dfh-t500x500.jpg"
 import sampleFile from "../assets/file.mp3"
+
 class SingleMusic extends React.Component {
 
     constructor(props) {
@@ -21,34 +22,36 @@ class SingleMusic extends React.Component {
 
     render() {
         const {playing, loaded, played, playedSeconds} = this.state
-        let playing_text = playing ? "pause" : "play"
+        const {name, artist, url, genre, image, duration} = this.props.single_music
         return (
             <>
                 <div className="sm-parent">
                     <div className="sm-song">
                         <div className="sm-thumbnail">
-                            <img src={sampleImage} className="sm-thumbnail-image" alt="filename" onClick={this.togglePlaying}/>
-                            <div className={"icon-" + playing_text} />
+                            <img src={image !== null ? image : sampleImage} className="sm-thumbnail-image"
+                                 alt="filename"
+                                 onClick={this.togglePlaying}/>
+                            <div className={playing ? "icon-pause" : "icon-play"}/>
                         </div>
                         <div className="sm-details">
                             <div className="sm-title">
-                                <div className="sm-name">Someone Like You</div>
-                                <div className="sm-artist">By Adele</div>
+                                <div className="sm-name">{name}</div>
+                                <div className="sm-artist">By {artist}</div>
                             </div>
-                            <div className="sm-duration">03:24</div>
+                            <div className="sm-duration">{duration}</div>
                             <div className="sm-download-links">
-                                <div className="icon-download2"></div>
+                                <div className="icon-download2"/>
                             </div>
                         </div>
                     </div>
                     <div className="sm-player">
                         <ReactPlayer height={0} width={0}
-                                                            ref={this.ref}
-                                                            onProgress={(state) => this.setState(state)}
-                                                            url={sampleFile}
-                                                            playing={playing} />
-                        <div className="sm-player-controls">
-                            <div className="icon-play3" />
+                                     ref={this.ref}
+                                     onProgress={(state) => this.setState(state)}
+                                     url={sampleFile}
+                                     playing={playing}/>
+                        <div className="sm-player-controls" onClick={this.togglePlaying}>
+                            <div className={playing ? "icon-pause2" : "icon-play3"}/>
                         </div>
                         <div className="sm-player-elapsed">{playedSeconds}</div>
                         <div className="sm-player-progress">
@@ -62,8 +65,10 @@ class SingleMusic extends React.Component {
                                 onMouseUp={this.handleSeekMouseUp}
                                 className="seek"/>
                         </div>
-                        <div className="sm-player-duration">4:55</div>
-                        <div className="sm-player-volume"><div className="icon-volume-medium"></div></div>
+                        <div className="sm-player-duration">{duration}</div>
+                        <div className="sm-player-volume">
+                            <div className="icon-volume-medium"/>
+                        </div>
                     </div>
 
                 </div>
