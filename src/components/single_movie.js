@@ -13,7 +13,7 @@ class SingleMovie extends React.Component {
         this.state = {
             downloadVideoOpen: false,
             downloadAudioOpen: false,
-            isDownloadLinkOpen: false,
+            isDownloadLinkOpen: null,
         }
         this.toggleDownloadVideoOpen = this.toggleDownloadVideoOpen.bind(this)
         this.toggleDownloadAudioOpen = this.toggleDownloadAudioOpen.bind(this)
