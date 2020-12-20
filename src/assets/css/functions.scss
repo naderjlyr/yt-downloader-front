@@ -1,0 +1,22 @@
+@mixin boxShadow($h-offset: 0 ,$v-offset: 7px,$blur:8px ,$color:#0003 ) {
+  -moz-box-shadow: $h-offset $v-offset $blur $color;
+  box-shadow: $h-offset $v-offset $blur $color;
+  -webkit-box-shadow: $h-offset $v-offset $blur $color;
+}
+@mixin borderRadius($radiusValue: 5px){
+  -webkit-border-radius: $radiusValue;
+  -moz-border-radius: $radiusValue;
+  border-radius: $radiusValue;
+}
+@mixin Transition($property: all, $duration:500ms, $timing-function:ease,$delay:0s){
+  -moz-transition: $property $duration;
+  -webkit-transition: $property $duration;
+  transition: $property $duration;
+  -o-transition: $property $duration;
+}
+
+@mixin Animation($keyFrameName,$duration,$timingFunction,$iterationCount, $delay: 0s){
+  animation: $keyFrameName $duration $timingFunction $delay $iterationCount;
+  -moz-animation:$keyFrameName $duration $timingFunction $delay $iterationCount;
+  -o-animation:$keyFrameName $duration $timingFunction $delay $iterationCount;
+}
