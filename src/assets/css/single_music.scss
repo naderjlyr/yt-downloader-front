@@ -6,23 +6,25 @@
   border-bottom: 2px solid #bebebe;
   box-shadow: 0 1px 9px #b4b4b4;
   //align-items: center;
-  .sm-song{
+  .sm-song {
     display: flex;
     flex: 1;
     width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
     .sm-thumbnail {
       cursor: pointer;
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
-      padding:10px;
+      padding: 10px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       flex-basis: 10%;
+
       .sm-thumbnail-image {
         display: block;
         height: 100%;
@@ -30,102 +32,141 @@
         border-radius: 50%;
         object-fit: cover;
       }
-      div[class^="icon-"]{
+
+      div[class^="icon-"] {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         color: #fff;
         pointer-events: none;
         -webkit-font-smoothing: antialiased;
         font-size: 32px;
       }
     }
-    .sm-details{
+
+    .sm-details {
       display: flex;
       flex: 1;
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: space-around;
       align-items: center;
-      .sm-name{
+
+      .sm-name {
 
       }
-      .sm-artist{
+
+      .sm-artist {
         color: #ccc;
       }
-      .sm-download-links{
+
+      .sm-download-links {
         -webkit-font-smoothing: antialiased;
-        font-size:32px;
-      }
-  }
-  }
-  .sm-player{
-    display: inline-flex;
-    align-items: center;
-    .sm-player-controls{
-      cursor: pointer;
-    }
-    .sm-player-elapsed{
-    }
-    .sm-player-duration{
-    }
-    .sm-player-volume{
-    }
-    .sm-player-progress{
-      flex-basis: 74%;
-      height: 4px;
-      border-radius: 5px;
-      background-color: #ccc;
-      position: relative;
-      .loaded{
-        border-radius: 5px;
-        background-color: #838383;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height:100%;
-      }
-      .played{
-        border-radius: 5px;
-        background-color: #000000;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height:100%;
-      }
-    }
-    .seek{
-      //border-radius: 5px;
-      -webkit-appearance: none;
-      appearance: none;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-      &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 16px;
-        height: 16px;
-        background: #000;
-        cursor: pointer;
-        border-radius: 8px;
-      }
-      &::-moz-range-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 16px;
-        height: 16px;
-        background: #000;
-        cursor: pointer;
-        border-radius: 8px;
+        font-size: 32px;
       }
     }
   }
+}
+
+.sm-player {
+  box-shadow: 0 1px 9px #b4b4b4;
+
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 4px;
+  height: 10vh;
+  align-items: center;
+  justify-content: space-between;
+  @media only screen and (max-width: 600px) {
+    bottom: 60px;
+  }
+}
+
+.sm-player-controls {
+  padding-left: 20px;
+
+  margin: auto 0;
+}
+
+.sm-player-elapsed {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  margin: auto 0;
 
 }
 
+.seek {
+  //border-radius: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #000;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #000;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+}
+
+.sm-player-progress {
+  margin: auto 0;
+  flex-basis: calc(100% - 30px);
+  height: 4px;
+  border-radius: 5px;
+  background-color: #ccc;
+  position: relative;
+
+}
+
+.loaded {
+  border-radius: 5px;
+  background-color: #838383;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.played {
+  border-radius: 5px;
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.sm-player-duration {
+  padding-left: 20px;
+  align-self: center;
+  padding-right: 30px;
+  right: 0;
+  position: relative;
+
+}

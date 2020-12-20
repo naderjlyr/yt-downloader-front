@@ -36,10 +36,11 @@ class MusicPlayer extends React.Component {
                                  onProgress={this.handleProgress}
                                  url={download_link}
                                  playing={playing}/>
-                    <div className="sm-player-controls" onClick={this.togglePlaying}>
+                    <div className="sm-player-controls" onClick={(_)=>this.context.updatePlaying(this.props.index, !this.context.playing)}>
                         <div className={playing ? "icon-pause2" : "icon-play3"}/>
                     </div>
-                    <div className="sm-player-elapsed">{playedSeconds}</div>
+                    {/*<div className="sm-player-elapsed">{playedSeconds}</div>*/}
+                    <div className="sm-player-elapsed">12:00</div>
                     <div className="sm-player-progress">
                         <div className="loaded" style={{width: `${loaded * 100}%`}}/>
                         <div className="played" style={{width: `${played * 100}%`}}/>
@@ -51,10 +52,11 @@ class MusicPlayer extends React.Component {
                             onMouseUp={this.handleSeekMouseUp}
                             className="seek"/>
                     </div>
-                    <div className="sm-player-duration">{duration}</div>
-                    <div className="sm-player-volume">
-                        <div className="icon-volume-medium"/>
-                    </div>
+                    {/*<div className="sm-player-duration">{duration}</div>*/}
+                    <div className="sm-player-duration">12:00</div>
+                    {/*<div className="sm-player-volume">*/}
+                    {/*    <div className="icon-volume-medium"/>*/}
+                    {/*</div>*/}
                 </div>}
             </>
         );
