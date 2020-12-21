@@ -20,12 +20,12 @@ class Searches extends React.Component {
             viewBoxLogoSVG: "0 0 150.51502 42.928498",
             all_videos: [],
             filtering_type: 'movie',
-            isBoxChecked: {
+            filteringClasses: {
                 "youtube": "unchecked", "movie": "unchecked",
                 "educational": "unchecked", "music": "unchecked", "adult": "unchecked",
             },
         }
-        this.BASE_ISBOXEDCHECKED = this.state.isBoxChecked
+        this.BASE_FILTERINGCLASSES = this.state.filteringClasses
         this.toggleCheckbox = this.toggleCheckbox.bind(this);
     }
 
@@ -40,7 +40,7 @@ class Searches extends React.Component {
 
     render() {
         let {
-            isBoxChecked,
+            filteringClasses,
             viewBoxLogoSVG,
             searchSuggestions,
             isSearchLoaded,
@@ -65,7 +65,7 @@ class Searches extends React.Component {
                     </div>
                     <div className="search-query-parent">
                         <div className="search-box-container" style={
-                            isSuggestionLoaded && searchValue.length > 1 ?
+                            isSuggestionLoaded && searchValue.length > 0 ?
                                 {
                                     borderBottomRightRadius: 0,
                                     borderBottomLeftRadius: 0,
@@ -124,43 +124,43 @@ class Searches extends React.Component {
                             </div>}
                         </div>
                         <div className="filtering-type">
-                            <div className={"ct-youtube-" + isBoxChecked['youtube']}
+                            <div className={"ct-youtube-" + filteringClasses['youtube']}
                                  onClick={this.toggleCheckbox}
                                  id="youtube">
-                                <div className={"icon-checkbox-" + isBoxChecked['youtube']}
+                                <div className={"icon-checkbox-" + filteringClasses['youtube']}
                                      id="youtube"
                                      onClick={this.toggleCheckbox}/>
                                 <div className="icon-youtube"/>
                                 <div className="label">Youtube</div>
                             </div>
-                            <div className={"ct-movie-" + isBoxChecked['movie']}
+                            <div className={"ct-movie-" + filteringClasses['movie']}
                                  onClick={this.toggleCheckbox}
                                  id="movie">
-                                <div className={"icon-checkbox-" + isBoxChecked['movie']} id="movie"
+                                <div className={"icon-checkbox-" + filteringClasses['movie']} id="movie"
                                      onClick={this.toggleCheckbox}/>
                                 <div className="icon-movie"/>
                                 <div className="label">Movies</div>
                             </div>
-                            <div className={"ct-educational-" + isBoxChecked['educational']}
+                            <div className={"ct-educational-" + filteringClasses['educational']}
                                  onClick={this.toggleCheckbox} id="educational">
-                                <div className={"icon-checkbox-" + isBoxChecked['educational']}
+                                <div className={"icon-checkbox-" + filteringClasses['educational']}
                                      id="educational"
                                      onClick={this.toggleCheckbox}/>
                                 <div className="icon-education"/>
                                 <div className="label">Educational</div>
                             </div>
-                            <div className={"ct-music-" + isBoxChecked['music']}
+                            <div className={"ct-music-" + filteringClasses['music']}
                                  onClick={this.toggleCheckbox}
                                  id="music">
-                                <div className={"icon-checkbox-" + isBoxChecked['music']} id="music"
+                                <div className={"icon-checkbox-" + filteringClasses['music']} id="music"
                                      onClick={this.toggleCheckbox}/>
                                 <div className="icon-music"/>
                                 <div className="label">Music</div>
                             </div>
-                            <div className={"ct-adult-" + isBoxChecked['adult']}
+                            <div className={"ct-adult-" + filteringClasses['adult']}
                                  onClick={this.toggleCheckbox}
                                  id="adult">
-                                <div className={"icon-checkbox-" + isBoxChecked['adult']} id="adult"
+                                <div className={"icon-checkbox-" + filteringClasses['adult']} id="adult"
                                      onClick={this.toggleCheckbox}/>
                                 <div className="icon-adult"/>
                                 <div className="label">Adult Content</div>
@@ -172,12 +172,11 @@ class Searches extends React.Component {
             </div>
         );
     }
-
     toggleCheckbox(e) {
-        let checkbox_classes = this.state.isBoxChecked
-        let base_box = {...this.BASE_ISBOXEDCHECKED}
+        let checkbox_classes = this.state.filteringClasses
+        let base_box = {...this.BASE_FILTERINGCLASSES}
         base_box[e.target.id] = checkbox_classes[e.target.id] === "unchecked" ? 'checked' : 'unchecked'
-        this.setState({isBoxChecked: base_box, filtering_type: e.target.id});
+        this.setState({filteringClasses: base_box, filtering_type: e.target.id});
     }
 
     handleEnter = (e) => e.key === "Enter" && this.handleSearch()
