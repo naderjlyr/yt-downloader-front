@@ -36,6 +36,7 @@ class ListMusic extends React.Component {
     render() {
         return (
             <MusicProvider>
+                <div>
                 {this.musics.map((item, index) =>
                     <SingleMusic
                         single_music={item}
@@ -43,6 +44,7 @@ class ListMusic extends React.Component {
                         index={index}
                     />
                 )}
+                </div>
                 <MusicPlayer musics={this.musics}/>
             </MusicProvider>
         )

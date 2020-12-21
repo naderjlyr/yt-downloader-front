@@ -1,7 +1,4 @@
 import React from "react"
-import ReactPlayer from "react-player/lazy";
-import sampleImage from "../assets/image/artworks-000114458540-d58dfh-t500x500.jpg"
-import sampleFile from "../assets/file.mp3"
 import MusicContext from "../utils/MusicContext";
 
 class SingleMusic extends React.Component {
@@ -32,24 +29,19 @@ class SingleMusic extends React.Component {
         }
         const {name, artist, image, duration} = single_music
         return (
-            <div>
-                <div className="sm-parent">
-                    <div className="sm-song">
-                        <div className="sm-thumbnail">
-                            <img src={image !== null ? image : sampleImage} className="sm-thumbnail-image"
-                                 alt="filename"
-                                 onClick={this.togglePlaying}/>
-                            <div className={playing ? "icon-pause" : "icon-play"}/>
+            <div className="sm-parent">
+                <div className="sm-song">
+                    <div className="sm-thumbnail" onClick={this.togglePlaying}>
+                        <div className={playing ? "icon-pause" : "icon-play3"}/>
+                    </div>
+                    <div className="sm-details">
+                        <div className="sm-title">
+                            <div className="sm-name">{name}</div>
+                            <div className="sm-artist">By {artist}</div>
                         </div>
-                        <div className="sm-details">
-                            <div className="sm-title">
-                                <div className="sm-name">{name}</div>
-                                <div className="sm-artist">By {artist}</div>
-                            </div>
-                            <div className="sm-duration">{duration}</div>
-                            <div className="sm-download-links">
-                                <div className="icon-download2"/>
-                            </div>
+                        <div className="sm-duration">{duration}</div>
+                        <div className="sm-download-links">
+                            <div className="icon-download2"/>
                         </div>
                     </div>
                 </div>

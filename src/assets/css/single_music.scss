@@ -1,10 +1,8 @@
 .sm-parent {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-bottom: 2%;
-  border-bottom: 2px solid #bebebe;
-  box-shadow: 0 1px 9px #b4b4b4;
   //align-items: center;
   .sm-song {
     display: flex;
@@ -23,7 +21,7 @@
       border-radius: 50%;
       display: flex;
       align-items: center;
-      flex-basis: 10%;
+      flex-basis: 4%;
 
       .sm-thumbnail-image {
         display: block;
@@ -66,6 +64,13 @@
         font-size: 32px;
       }
     }
+  }
+
+  &:first-child {
+  border-radius: 8px 8px 0 0 ;
+  }
+  &:nth-child(2n+1) {
+    background-color: #e9f1f9;
   }
 }
 
