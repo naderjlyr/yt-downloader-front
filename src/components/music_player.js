@@ -1,6 +1,7 @@
 import React from "react"
 import ReactPlayer from "react-player/lazy";
 import MusicContext from "../utils/MusicContext";
+import {fancyTimeFormat} from "../utils/data";
 
 class MusicPlayer extends React.Component {
     static contextType = MusicContext
@@ -39,8 +40,7 @@ class MusicPlayer extends React.Component {
                     <div className="sm-player-controls" onClick={(_)=>this.context.updatePlaying(this.props.index, !this.context.playing)}>
                         <div className={playing ? "icon-pause2" : "icon-play3"}/>
                     </div>
-                    {/*<div className="sm-player-elapsed">{playedSeconds}</div>*/}
-                    <div className="sm-player-elapsed">12:00</div>
+                    <div className="sm-player-elapsed">{fancyTimeFormat(playedSeconds)}</div>
                     <div className="sm-player-progress">
                         <div className="loaded" style={{width: `${loaded * 100}%`}}/>
                         <div className="played" style={{width: `${played * 100}%`}}/>
@@ -52,8 +52,7 @@ class MusicPlayer extends React.Component {
                             onMouseUp={this.handleSeekMouseUp}
                             className="seek"/>
                     </div>
-                    {/*<div className="sm-player-duration">{duration}</div>*/}
-                    <div className="sm-player-duration">12:00</div>
+                    <div className="sm-player-duration">{fancyTimeFormat(duration)}</div>
                     {/*<div className="sm-player-volume">*/}
                     {/*    <div className="icon-volume-medium"/>*/}
                     {/*</div>*/}

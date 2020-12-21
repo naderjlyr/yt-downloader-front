@@ -1,5 +1,6 @@
 import React from "react"
 import MusicContext from "../utils/MusicContext";
+import {fancyTimeFormat} from "../utils/data";
 
 class SingleMusic extends React.Component {
     static contextType = MusicContext
@@ -27,7 +28,8 @@ class SingleMusic extends React.Component {
 
             playing = this.context.playing
         }
-        const {name, artist, image, duration} = single_music
+
+        const {name, artist, duration} = single_music
         return (
             <div className="sm-parent">
                 <div className="sm-song">
@@ -39,7 +41,7 @@ class SingleMusic extends React.Component {
                             <div className="sm-name">{name}</div>
                             <div className="sm-artist">By {artist}</div>
                         </div>
-                        <div className="sm-duration">{duration}</div>
+                        <div className="sm-duration">{fancyTimeFormat(duration)}</div>
                         <div className="sm-download-links">
                             <div className="icon-download2"/>
                         </div>
