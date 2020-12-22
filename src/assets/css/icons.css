@@ -90,6 +90,7 @@
 }
 .icon-play3:before {
     content: "\ea1c";
+    margin-left: 3px;
 }
 .icon-pause2:before {
     content: "\ea1d";
