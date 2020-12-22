@@ -5,7 +5,7 @@ class DownloadLinkModal extends React.Component {
     constructor(props) {
         super(props);
         this.all_qualities = this.props.download_links
-        this.qualitiesClassName_ = this.all_qualities.map(_ => 'sv-modal-quality')
+        this.qualitiesClassName_ = Object.keys(props.downloads).length === 1 ? this.all_qualities.map(_ => 'sv-modal-quality active') : this.all_qualities.map(_ => 'sv-modal-quality')
         this.state = {qualitiesClassName: this.qualitiesClassName_}
         this.toggleTab = this.toggleTab.bind(this)
 
