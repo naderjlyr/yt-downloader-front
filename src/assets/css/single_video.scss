@@ -450,27 +450,10 @@
       width: 24px;
       text-decoration: none;
       font-weight: bold;
-    <<<<<<< HEAD
     @include borderRadius(12px);
     @include boxShadow(0,0,10px,#000);
     @include Transition(all,0.5s,ease-out,0.2s);
-    =======
-    -webkit-border-radius: 12px;
-      -moz-border-radius: 12px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #000; // Opera, FFX4
-      -moz-box-shadow: 0 0 10px #000; // FFX3.5
-      -webkit-box-shadow: 0 0 10px #000; // Safari/Chrome/WebKit
-      -moz-transition: all .5s ease-out;
-      -webkit-transition: all .5s ease-out;
-      -o-transition: all .5s ease-out;
-      -webkit-transition-delay: .2s;
-      -moz-transition-delay: .2s;
-      -o-transition-delay: .2s;
-      transition-delay: .2s;
-
-    >>>>>>> 8411089ecc7a5449928a73299d17301cb032a02d
-    &:hover {
+     &:hover {
       background: #007bff;
     }
 
