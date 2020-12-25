@@ -1,3 +1,4 @@
+@import "functions";
 @font-face {
   font-family: 'myFont';
   src: local('Handlee'), url('../fonts/Handlee-Regular.ttf') format('truetype');
@@ -149,18 +150,6 @@
   color: #f5c518;
 }
 
-.sv-owner {
-  color: #606060;
-  max-width: 100%;
-  display: block;
-  max-height: calc(2 * 1.8rem);
-  overflow: hidden;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.8rem;
-  letter-spacing: inherit;
-  text-transform: none;
-}
 
 #sv-download-video-options.sv-download-video-options {
   max-height: 100%;
@@ -221,7 +210,6 @@
 
   }
 }
-
 .sv-quick-download-icon {
   height: 40px;
 
@@ -246,7 +234,7 @@
 }
 
 .sv-dropdown-svg {
-  padding-left: 10px;
+  padding-left: 8px;
   height: 15px;
   width: 15px;
 }
@@ -264,7 +252,7 @@
   text-transform: none;
 }
 
-.sv-published-date {
+.sv-published-date,.sv-owner {
   color: #606060;
   max-width: 100%;
   display: block;
@@ -309,13 +297,22 @@
       margin: 0 auto;
       height: fit-content;
     }
-
+    .sv-thumbnail-movie {
+      width: 85%;
+      margin: 0 auto;
+      height: fit-content;
+    }
     .sv-download-link {
       width: 96%;
       padding: 3px;
       margin: 0 auto;
     }
-
+    .sv-download-video{
+      padding:0;
+    }
+    .sv-download-audio{
+      padding: 10px 0 10px 0;
+    }
     .sv-detail {
       width: 96%;
       margin: 0 auto;
@@ -372,7 +369,7 @@
 
 .sv-modal-parent {
   position: fixed;
-  display: table;
+  display: flex;
   height: 100%;
   width: 100%;
   top: 0;
@@ -408,7 +405,11 @@
   }
 
   .sv-modal-overlay {
-    display: table-cell;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.8);
     text-align: center;
     vertical-align: middle;
@@ -423,14 +424,8 @@
       z-index: 5;
       font-family: "myFont", serif;
       padding: 5px 20px 13px 20px;
-      //border radius
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      //box-shadow
-      box-shadow: 0 0 10px #000; // Opera, FFX4
-      -moz-box-shadow: 0 0 10px #000; // FFX3.5
-      -webkit-box-shadow: 0 0 10px #000; // Safari/Chrome/WebKit
+      @include borderRadius(10px);
+      @include boxShadow(0,0,10px,#000);
     }
   }
 
@@ -455,7 +450,12 @@
       width: 24px;
       text-decoration: none;
       font-weight: bold;
-      -webkit-border-radius: 12px;
+    <<<<<<< HEAD
+    @include borderRadius(12px);
+    @include boxShadow(0,0,10px,#000);
+    @include Transition(all,0.5s,ease-out,0.2s);
+    =======
+    -webkit-border-radius: 12px;
       -moz-border-radius: 12px;
       border-radius: 12px;
       box-shadow: 0 0 10px #000; // Opera, FFX4
@@ -469,12 +469,10 @@
       -o-transition-delay: .2s;
       transition-delay: .2s;
 
-      &:hover {
-        background: #007bff;
-        -moz-transition: all .5s ease-out;
-        -webkit-transition: all .5s ease-out;
-        -o-transition: all .5s ease-out;
-      }
+    >>>>>>> 8411089ecc7a5449928a73299d17301cb032a02d
+    &:hover {
+      background: #007bff;
+    }
 
       cursor: pointer;
     }
@@ -489,7 +487,7 @@
 
     &-body {
       width: 100%;
-      font-size: 3vh;
+      //font-size: 3vh;
       background: transparent;
 
       .sv-modal-box {
@@ -497,7 +495,7 @@
         position: relative;
         height: auto;
         display: flex;
-        font-size: 2vh;
+        //font-size: 2vh;
         border-radius: 3px;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -514,8 +512,8 @@
             overflow: hidden;
 
             &-label {
-              box-shadow: 2px 2px 2px #ccc;
-              transition: all 200ms;
+              @include boxShadow(2px,2px,2px,#ccc);
+              @include Transition(all,200ms,ease);
               display: flex;
               justify-content: space-between;
               padding: 1em;
@@ -533,7 +531,7 @@
                 width: 1em;
                 height: 1em;
                 text-align: center;
-                transition: all .35s;
+                @include Transition(all,0.35s,ease);
               }
             }
 
@@ -542,7 +540,7 @@
               padding: 0 1em;
               color: #fff;
               background: white;
-              transition: all .35s;
+              @include Transition(all,0.35s,ease);
             }
 
             &-close {
