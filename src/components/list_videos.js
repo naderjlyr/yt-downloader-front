@@ -26,7 +26,7 @@ class ListVideos extends React.Component {
                         case 'educational':
                             return items['data'].map(item => <SingleEducation single_video={item} key={Math.random()}/>)
                         case 'youtube':
-                            return <SingleYoutube single_video={items}/>
+                            return items['data'].map(item => <SingleYoutube key={Math.random()} single_video={item}/>)
                     }
                 })}
             </div>

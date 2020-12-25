@@ -1,4 +1,3 @@
-@import "functions";
 @font-face {
   font-family: 'myFont';
   src: local('Handlee'), url('../fonts/Handlee-Regular.ttf') format('truetype');
@@ -62,6 +61,14 @@
   padding: 0.5vh;
 }
 
+.sv-thumbnail-youtube {
+  position: relative;
+  margin-right: 16px;
+  max-width: 360px;
+  min-width: 240px;
+  flex-basis: 1e-9px;
+}
+
 .sv-thumbnail {
   position: relative;
   height: 30vh;
@@ -81,10 +88,26 @@
 .sv-detail {
   display: flex;
   flex-direction: column;
-  margin-left: 2vh;
   width: 70%;
   padding-right: 10px;
   justify-content: center;
+}
+
+.sv-title-youtube {
+  text-decoration: none;
+
+  color: #030303;
+  -webkit-line-clamp: 2;
+  display: block;
+  max-height: calc(2 * 2.4rem);
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4rem;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+  display: -webkit-box;
 }
 
 .sv-title {
@@ -126,6 +149,18 @@
   color: #f5c518;
 }
 
+.sv-owner {
+  color: #606060;
+  max-width: 100%;
+  display: block;
+  max-height: calc(2 * 1.8rem);
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8rem;
+  letter-spacing: inherit;
+  text-transform: none;
+}
 
 #sv-download-video-options.sv-download-video-options {
   max-height: 100%;
@@ -211,7 +246,7 @@
 }
 
 .sv-dropdown-svg {
-  padding-left: 8px;
+  padding-left: 10px;
   height: 15px;
   width: 15px;
 }
@@ -229,7 +264,7 @@
   text-transform: none;
 }
 
-.sv-published-date,.sv-owner {
+.sv-published-date {
   color: #606060;
   max-width: 100%;
   display: block;
@@ -274,22 +309,13 @@
       margin: 0 auto;
       height: fit-content;
     }
-    .sv-thumbnail-movie {
-      width: 85%;
-      margin: 0 auto;
-      height: fit-content;
-    }
+
     .sv-download-link {
       width: 96%;
       padding: 3px;
       margin: 0 auto;
     }
-    .sv-download-video{
-      padding:0;
-    }
-    .sv-download-audio{
-      padding: 10px 0 10px 0;
-    }
+
     .sv-detail {
       width: 96%;
       margin: 0 auto;
@@ -346,7 +372,7 @@
 
 .sv-modal-parent {
   position: fixed;
-  display: flex;
+  display: table;
   height: 100%;
   width: 100%;
   top: 0;
@@ -367,25 +393,26 @@
       animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     }
   }
+
   &.close {
     transform: scale(1);
     animation: quickScaleDown 0s 0.5s linear forwards;
+
     .sv-modal-overlay {
       animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
       .sv-modal-container {
         animation: roadRunnerOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       }
     }
   }
+
   .sv-modal-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    display: table-cell;
     background: rgba(0, 0, 0, 0.8);
     text-align: center;
     vertical-align: middle;
+
     .sv-modal-container {
       width: 50%;
       display: flex;
@@ -396,18 +423,27 @@
       z-index: 5;
       font-family: "myFont", serif;
       padding: 5px 20px 13px 20px;
-      @include borderRadius(10px);
-      @include boxShadow(0,0,10px,#000);
+      //border radius
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      //box-shadow
+      box-shadow: 0 0 10px #000; // Opera, FFX4
+      -moz-box-shadow: 0 0 10px #000; // FFX3.5
+      -webkit-box-shadow: 0 0 10px #000; // Safari/Chrome/WebKit
     }
   }
+
   .sv-modal-head {
     width: 100%;
+
     h3 {
       text-align: left;
       border-left: 2px solid #c6c6c6;
       padding: 0 0 0 2%;
       margin: 2%;
     }
+
     .sv-modal-close-button {
       background: #606061;
       color: #FFFFFF;
@@ -419,12 +455,27 @@
       width: 24px;
       text-decoration: none;
       font-weight: bold;
-      @include borderRadius(12px);
-      @include boxShadow(0,0,10px,#000);
-      @include Transition(all,0.5s,ease-out,0.2s);
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #000; // Opera, FFX4
+      -moz-box-shadow: 0 0 10px #000; // FFX3.5
+      -webkit-box-shadow: 0 0 10px #000; // Safari/Chrome/WebKit
+      -moz-transition: all .5s ease-out;
+      -webkit-transition: all .5s ease-out;
+      -o-transition: all .5s ease-out;
+      -webkit-transition-delay: .2s;
+      -moz-transition-delay: .2s;
+      -o-transition-delay: .2s;
+      transition-delay: .2s;
+
       &:hover {
         background: #007bff;
+        -moz-transition: all .5s ease-out;
+        -webkit-transition: all .5s ease-out;
+        -o-transition: all .5s ease-out;
       }
+
       cursor: pointer;
     }
   }
@@ -435,31 +486,36 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
+
     &-body {
       width: 100%;
-      //font-size: 3vh;
+      font-size: 3vh;
       background: transparent;
+
       .sv-modal-box {
         width: 100%;
         position: relative;
         height: auto;
         display: flex;
-        //font-size: 2vh;
+        font-size: 2vh;
         border-radius: 3px;
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: flex-start;
+
         .sv-modal-qualities {
           border-radius: 0;
           overflow: hidden;
           width: 100%;
-          .sv-modal-quality{
+
+          .sv-modal-quality {
             width: 100%;
             color: white;
             overflow: hidden;
+
             &-label {
-              @include boxShadow(2px,2px,2px,#ccc);
-              @include Transition(all,200ms,ease);
+              box-shadow: 2px 2px 2px #ccc;
+              transition: all 200ms;
               display: flex;
               justify-content: space-between;
               padding: 1em;
@@ -471,21 +527,24 @@
               &:hover {
                 background-color: rgba(0, 0, 0, 0.1);
               }
+
               &::after {
                 content: "\276F";
                 width: 1em;
                 height: 1em;
                 text-align: center;
-                @include Transition(all,0.35s,ease);
+                transition: all .35s;
               }
             }
+
             &-content {
               max-height: 0;
               padding: 0 1em;
               color: #fff;
               background: white;
-              @include Transition(all,0.35s,ease);
+              transition: all .35s;
             }
+
             &-close {
               display: flex;
               justify-content: flex-end;
@@ -493,26 +552,33 @@
               font-size: 0.75em;
               background: #fff;
               cursor: pointer;
+
               &:hover {
                 background: #fff;
               }
             }
+
             &.active {
               .sv-modal-quality-content {
-                max-height: 100vh;
+                max-height: 300px;
                 width: 100%;
+                overflow-y: scroll;
                 padding: 1em;
               }
+
               .sv-modal-quality-content div {
                 line-height: 3vh;
                 cursor: pointer;
               }
+
               .sv-modal-quality-content div.url-link:hover {
                 text-decoration: underline;
               }
+
               .sv-modal-quality-content div.url-section:hover {
                 text-decoration: underline;
               }
+
               .sv-modal-quality-label::after {
                 transform: rotate(90deg);
                 -webkit-transform: rotate(90deg);
@@ -521,6 +587,7 @@
               }
             }
           }
+
           .sv-modal-quality.active {
             background-color: rgba(0, 0, 0, 0.1);
           }
