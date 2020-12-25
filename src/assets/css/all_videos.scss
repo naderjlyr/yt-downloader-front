@@ -372,8 +372,8 @@ div#root {
       outline: none;
       display: inline-flex;
       width: 100%;
-      border-bottom-right-radius: 30px;
-      border-bottom-left-radius: 30px;
+      //border-bottom-right-radius: 30px;
+      //border-bottom-left-radius: 30px;
       @include Transition(all,0.3s);
       min-height: 20px;
       &:first-child {
