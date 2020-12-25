@@ -1,6 +1,5 @@
 import React from "react"
 import DropSVG from "../assets/icons/dropSVG";
-import Mp3 from "../assets/icons/mp3SVG";
 import Mp4 from "../assets/icons/mp4SVG";
 import API from "../utils/API";
 import DownloadLinkModal from "./download_links";
