@@ -27,22 +27,26 @@ class SingleMusic extends React.Component {
 
             playing = this.context.playing
         }
-        const {name, artist, duration,download_link} = single_music
+        const {image,name, artist, duration,download_link} = single_music
         return (
-            <div className="sm-parent">
+            <div className={playing ? "sm-parent-loaded" : "sm-parent"}  onClick={this.togglePlaying}>
                 <div className="sm-song">
-                    <div className={playing ? "sm-thumbnail-loaded" : "sm-thumbnail"} onClick={this.togglePlaying}>
-                        <div className={playing ? "icon-pause2" : "icon-play3"}/>
+                    <div className={playing ? "sm-thumbnail-loaded" : "sm-thumbnail"}>
+                        <div className="sm-thumbnail-image"><img src={image}/></div>
                     </div>
                     <div className="sm-details">
                         <div className="sm-title">
                             <div className="sm-name">{name}</div>
-                            <div className="sm-artist">By {artist}</div>
+                            <div className="sm-artist">{artist}</div>
                         </div>
+
                         <div className="sm-right">
                             <div className="sm-duration">{fancyTimeFormat(duration)}</div>
+                            <div className="sm-favorite">
+                                <div className="icon-heart" />
+                            </div>
                             <div className="sm-download-links">
-                                <div className="icon-download2" onClick={(_)=>window.open(download_link,"_blank")} />
+                                <div className="icon-download" onClick={(_)=>window.open(download_link,"_blank")} />
                             </div>
                         </div>
                     </div>

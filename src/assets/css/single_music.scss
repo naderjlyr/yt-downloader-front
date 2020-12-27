@@ -1,11 +1,27 @@
-.sm-parent {
+.sm-parent,.sm-parent-loaded {
+  position: relative;
   background-color: #fff;
   display: flex;
+  border-radius: 5px;
   flex-direction: column;
   align-self: center;
-  padding: 10px;
-  border:1px solid #ccc;
-  border-bottom: 0;
+  margin: 2px 0 2px 0;
+  transition: all 400ms;
+  box-shadow: 0 1px 5px #e7e7e7;
+  cursor: pointer;
+  &:hover{
+    box-shadow: 1px 2px 5px #efefef;
+    background: #f6f6f6;
+  }
+  .sm-thumbnail,.sm-thumbnail-loaded{
+    width: 6%;
+    padding: 5px 40px 5px 40px;
+    position: relative;
+    border-radius: 5px;
+    img{
+      width: 100%;
+    }
+  }
   .sm-song {
     display: flex;
     flex: 1;
@@ -13,31 +29,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    .sm-thumbnail, .sm-thumbnail-loaded {
-      position: relative;
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 10px;
-      text-align: center;
-      .icon-play3, .icon-pause2{
-        border-radius: 50%;
-        box-shadow: inset 0 0 0 2px #ffb088;
-        color: #444;
-        height: 40px;
-        line-height: 40px;
-        width: 40px;
-        font-size: 24px;
-        cursor: pointer;
-      }
-      .icon-pause2{
-        font-size: 20px;
-      }
-    }
-.sm-thumbnail-loaded{
-  -webkit-animation: bubble_out .7s ease-in-out infinite both;
-  animation: bubble_out .7s ease-in-out infinite both;
-  border-color: rebeccapurple;
-}
     .sm-details {
       display: flex;
       position: relative;
@@ -47,55 +38,60 @@
       align-items: center;
       .sm-right{
         right: 0;
-        justify-content: flex-end;
+        width: 20%;
+        align-items: center;
+        justify-content: space-evenly;
         position: absolute;
-        padding-right: 26px;
         display: flex;
+        font-size: 2vw;
         .sm-duration{
-          padding-right: 50px;
+          font-size: 1vw;
         }
       }
       .sm-title{
         width: calc(100% - 150px);
+        padding:0 20px 0 20px;
       }
       .sm-name {
 
       }
-
       .sm-artist {
-        color: #ccc;
+        color: #929292;
       }
-
       .sm-download-links {
         cursor: pointer;
         -webkit-font-smoothing: antialiased;
-        font-size: 32px;
         transition: all 700ms;
+        font-weight: 600;
         &:hover{
           color: #ff7940;
           transform: scale(1.2);
         }
       }
+      .sm-favorite{
+        font-size: 1.5vw;
+        color: #ba2828;
+      }
     }
   }
-
-  &:first-child {
-  border-radius: 8px 8px 0 0 ;
-  }
   &:nth-child(2n+1) {
-    background-color: #fafafa;
   }
 }
+.sm-parent-loaded{
+  background: #ececec;
+  box-shadow: 0 1px 3px #b4b4b4;
+  border-radius: 5px;
 
+}
 .sm-player {
   box-shadow: 0 1px 9px #b4b4b4;
   display: flex;
   flex-direction: row;
   position: sticky;
   bottom: 0;
-  background-color: #fff;
   width: 100%;
-  border-radius: 4px;
+  background-color: #fff;
+  border-radius: 3px;
   height: 10vh;
   align-items: center;
   justify-content: space-between;
@@ -212,5 +208,22 @@
   50% {
     -webkit-transform: scale(1);
     transform: scale(1)
+  }
+}
+
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #19dcea;
+  }
+  100% {
+    background: #b22cff;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #19dcea;
+  }
+  100% {
+    background: #b22cff;
   }
 }
